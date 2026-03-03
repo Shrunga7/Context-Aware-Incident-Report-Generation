@@ -1,6 +1,23 @@
 # Context-Aware Incident Report Auto-Completion for IT / SOC Teams using NLP
 
-This project focuses on automating the creation of Security Operations Center (SOC) incident reports by transforming heterogeneous, noisy data into structured formats suitable for advanced NLP modeling. We have successfully completed **Stage 1**, which establishes a modular preprocessing pipeline to convert raw multi-source data into a unified JSON representation.
+This project focuses on automating the creation of Security Operations Center (SOC) incident reports by transforming heterogeneous, noisy data into structured formats suitable for advanced NLP modeling. We have completed **Stage 1**, which establishes a modular preprocessing pipeline to convert raw multi-source data into a unified JSON representation.
+
+---
+## Folder Structure
+* Dataset is generated using the Python script stage1_build_dataset.py
+### Stage1 extraction: 
+* stage1_extraction.py
+* Parsed log events and normalized text, performed NER, extracted commands, and performed context fusion. 
+* Finally Validated the extracted data to maintain factual correctness.
+### Debugging
+* stage1_debug.py
+* To debug the functionality of each block of code.
+### Testing
+* stage1_check.py
+* To test any validation failures.
+### Output
+* incident_dataset_stage1.csv
+* Structured JSON
 
 ---
 
@@ -93,8 +110,6 @@ While Stage 1 provides a scalable foundation, the following areas are currently 
 * **Manual Inference:** Root-cause inference and severity classification are not automated in this stage.
 
 
-
----
 
 ## Roadmap: Stage 2
 
