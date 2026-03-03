@@ -4,7 +4,7 @@ This project focuses on automating the creation of Security Operations Center (S
 
 ---
 
-## 🚀 Overview: Stage 1 Completion
+## Overview: Stage 1 Completion
 
 The primary objective of this stage was to normalize and consolidate inconsistent data sources—such as logs, chats, and commands—into a clean dataset (`incident_dataset_stage1.json`) ready for Stage 2 modeling.
 
@@ -30,7 +30,7 @@ The pipeline processes the following fields from each incident record:
 
 ---
 
-## 🛠 Methodology & Pipeline
+## Methodology & Pipeline
 
 Stage 1 is implemented as a modular NLP preprocessing pipeline consisting of six key components:
 
@@ -53,7 +53,7 @@ Stage 1 is implemented as a modular NLP preprocessing pipeline consisting of six
 
 ---
 
-## 📊 Output Schema
+## Output Schema
 
 Each processed incident is exported into a structured JSON format:
 
@@ -80,7 +80,7 @@ Each processed incident is exported into a structured JSON format:
 
 ---
 
-## ⚠️ Current Limitations
+## Current Limitations
 
 While Stage 1 provides a scalable foundation, the following areas are currently out of scope:
 
@@ -96,7 +96,7 @@ While Stage 1 provides a scalable foundation, the following areas are currently 
 
 ---
 
-## 🗺 Roadmap: Stage 2
+## Roadmap: Stage 2
 
 With a clean and consistent dataset now available, Stage 2 will focus on generative and supervised NLP tasks:
 
