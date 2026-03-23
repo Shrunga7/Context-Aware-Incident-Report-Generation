@@ -1,0 +1,357 @@
+incident_id,incident_type,logs,chat_transcript,commands_executed,root_cause,resolution,preventive_action,stage1_json,num_stage1_issues
+INC_0085,db_connection_failure,"2026-02-01 13:50:10 ERROR OrderService failed to connect to database
+2026-02-01 13:50:20 WARN Connection refused on db-server-1
+2026-02-01 13:50:40 WARN DB health check failed on db-server-1
+2026-02-01 13:51:10 INFO Database service restarted
+2026-02-01 13:52:10 INFO Connection restored","Engineer A: Database connection errors in the app.
+Engineer B: db-server-1 appears down/unreachable.
+Engineer A: Restarting DB now.
+Engineer B: Connection restored.",service mysql restart,Temporary DB outage on db-server-1 caused connection failures.,Restarted mysql service to restore connectivity.,Set up DB replication/failover and monitor connection errors.,"{""services_affected"": [""OrderService""], ""hosts"": [""db-server-1""], ""ips"": [], ""timeline"": [{""time"": ""2026-02-01 13:50:10"", ""level"": ""ERROR"", ""event"": ""ERROR OrderService failed to connect to database""}, {""time"": ""2026-02-01 13:50:20"", ""level"": ""WARN"", ""event"": ""WARN Connection refused on db-server-1""}, {""time"": ""2026-02-01 13:50:40"", ""level"": ""WARN"", ""event"": ""WARN DB health check failed on db-server-1""}, {""time"": ""2026-02-01 13:51:10"", ""level"": ""INFO"", ""event"": ""INFO Database service restarted""}, {""time"": ""2026-02-01 13:52:10"", ""level"": ""INFO"", ""event"": ""INFO Connection restored""}], ""commands"": {""raw"": ""service mysql restart"", ""has_command"": false, ""command_hint"": null}, ""stage1_parse_errors"": [], ""stage1_validation_issues"": []}",0
+INC_0016,cpu_timeout,"2026-02-01 13:18:22 ERROR Gateway timeout on vm-9
+2026-02-01 13:18:27 WARN CPU usage 90% on vm-9
+2026-02-01 13:18:42 WARN Queue depth high for Gateway
+2026-02-01 13:19:22 INFO Restart initiated for Gateway
+2026-02-01 13:20:22 INFO Service restored","Engineer A: Users reporting errors on Gateway.
+Engineer B: High load on vm-9 (CPU 90%).
+Engineer A: Rolling restart now.
+Engineer B: Service looks healthy.",kubectl rollout restart deployment Gateway,High CPU usage on vm-9 caused Gateway timeouts.,Restarted Gateway deployment.,Enable auto-scaling and add CPU alerts.,"{""services_affected"": [""Gateway""], ""hosts"": [""vm-9""], ""ips"": [], ""timeline"": [{""time"": ""2026-02-01 13:18:22"", ""level"": ""ERROR"", ""event"": ""ERROR Gateway timeout on vm-9""}, {""time"": ""2026-02-01 13:18:27"", ""level"": ""WARN"", ""event"": ""WARN CPU usage 90% on vm-9""}, {""time"": ""2026-02-01 13:18:42"", ""level"": ""WARN"", ""event"": ""WARN Queue depth high for Gateway""}, {""time"": ""2026-02-01 13:19:22"", ""level"": ""INFO"", ""event"": ""INFO Restart initiated for Gateway""}, {""time"": ""2026-02-01 13:20:22"", ""level"": ""INFO"", ""event"": ""INFO Service restored""}], ""commands"": {""raw"": ""kubectl rollout restart deployment Gateway"", ""has_command"": true, ""command_hint"": ""kubectl""}, ""stage1_parse_errors"": [], ""stage1_validation_issues"": []}",0
+INC_0101,db_connection_failure,"2026-02-01 18:03:44 ERROR PaymentService failed to connect to database
+2026-02-01 18:03:54 WARN Connection refused on db-server-1
+2026-02-01 18:04:44 INFO Database service restarted
+2026-02-01 18:05:44 INFO Connection restored
+2026-02-01 18:06:44 INFO Application error rate returned to normal","Engineer A: Seeing DB connection failures.
+Engineer B: Connection refused on db-server-1.
+Engineer A: Cycling the DB service.
+Engineer B: Connection restored.",systemctl restart postgresql,Database host db-server-1 stopped responding to connections.,Restarted postgresql service to restore connectivity.,Add DB health checks and connection retry/backoff.,"{""services_affected"": [""PaymentService""], ""hosts"": [""db-server-1""], ""ips"": [], ""timeline"": [{""time"": ""2026-02-01 18:03:44"", ""level"": ""ERROR"", ""event"": ""ERROR PaymentService failed to connect to database""}, {""time"": ""2026-02-01 18:03:54"", ""level"": ""WARN"", ""event"": ""WARN Connection refused on db-server-1""}, {""time"": ""2026-02-01 18:04:44"", ""level"": ""INFO"", ""event"": ""INFO Database service restarted""}, {""time"": ""2026-02-01 18:05:44"", ""level"": ""INFO"", ""event"": ""INFO Connection restored""}, {""time"": ""2026-02-01 18:06:44"", ""level"": ""INFO"", ""event"": ""INFO Application error rate returned to normal""}], ""commands"": {""raw"": ""systemctl restart postgresql"", ""has_command"": true, ""command_hint"": ""systemctl""}, ""stage1_parse_errors"": [], ""stage1_validation_issues"": []}",0
+INC_0274,security_failed_logins,"2026-02-01 17:41:14 WARN Multiple failed login attempts (20 in 2m) from 203.0.113.14 on RDP
+2026-02-01 17:45:14 INFO Mitigation applied: IP blocked
+2026-02-01 17:48:14 INFO Failed login rate returned to baseline","Engineer A: Seeing repeated authentication failures.
+Engineer B: Spike in failed logins on RDP.
+Engineer A: Applying a temporary firewall block.
+Engineer B: Failures dropped after the block.
+Engineer A: Auditing other users for similar attempts on RDP.",fail2ban-client set sshd banip 203.0.113.14,High-rate failed logins from 203.0.113.14 caused security alerts on RDP.,Enabled rate limiting and blocked 203.0.113.14 to stop repeated failures.,Tune fail2ban thresholds and add SIEM alerting.,"{""services_affected"": [], ""hosts"": [], ""ips"": [""203.0.113.14""], ""timeline"": [{""time"": ""2026-02-01 17:41:14"", ""level"": ""WARN"", ""event"": ""WARN Multiple failed login attempts (20 in 2m) from 203.0.113.14 on RDP""}, {""time"": ""2026-02-01 17:45:14"", ""level"": ""INFO"", ""event"": ""INFO Mitigation applied: IP blocked""}, {""time"": ""2026-02-01 17:48:14"", ""level"": ""INFO"", ""event"": ""INFO Failed login rate returned to baseline""}], ""commands"": {""raw"": ""fail2ban-client set sshd banip 203.0.113.14"", ""has_command"": true, ""command_hint"": ""fail2ban-client""}, ""stage1_parse_errors"": [], ""stage1_validation_issues"": []}",0
+INC_0138,disk_full,"2026-02-01 11:43:23 ERROR Disk space 100% on node-6
+2026-02-01 11:43:43 WARN Write failure in OrderService
+2026-02-01 11:43:58 WARN No space left on device on node-6
+2026-02-01 11:45:23 INFO Old logs cleared
+2026-02-01 11:46:23 INFO Disk usage reduced to 65%
+2026-02-01 11:47:23 INFO OrderService health check passed","Engineer A: Disk full on node-6.
+Engineer B: Likely logs grew too fast.
+Engineer A: Removing old temp files.
+Engineer B: System stable after cleanup.
+Engineer A: Verifying disk usage and service health.",rm -rf /var/log/old_logs/*,"Uncontrolled log growth filled disk on node-6, impacting OrderService.",Cleaned up logs and validated OrderService resumed normal writes.,Add automated cleanup job and enforce retention limits.,"{""services_affected"": [""OrderService""], ""hosts"": [""node-6""], ""ips"": [], ""timeline"": [{""time"": ""2026-02-01 11:43:23"", ""level"": ""ERROR"", ""event"": ""ERROR Disk space 100% on node-6""}, {""time"": ""2026-02-01 11:43:43"", ""level"": ""WARN"", ""event"": ""WARN Write failure in OrderService""}, {""time"": ""2026-02-01 11:43:58"", ""level"": ""WARN"", ""event"": ""WARN No space left on device on node-6""}, {""time"": ""2026-02-01 11:45:23"", ""level"": ""INFO"", ""event"": ""INFO Old logs cleared""}, {""time"": ""2026-02-01 11:46:23"", ""level"": ""INFO"", ""event"": ""INFO Disk usage reduced to 65%""}, {""time"": ""2026-02-01 11:47:23"", ""level"": ""INFO"", ""event"": ""INFO OrderService health check passed""}], ""commands"": {""raw"": ""rm -rf /var/log/old_logs/*"", ""has_command"": true, ""command_hint"": ""rm""}, ""stage1_parse_errors"": [], ""stage1_validation_issues"": []}",0
+INC_0002,cpu_timeout,"2026-02-01 16:24:26 ERROR AuthService timeout on node-4
+2026-02-01 16:24:31 WARN CPU usage 90% on node-4
+2026-02-01 16:25:26 INFO Restart initiated for AuthService
+2026-02-01 16:26:26 INFO Service restored
+2026-02-01 16:27:26 INFO Health check passed for AuthService","Engineer A: AuthService is timing out.
+Engineer B: CPU is at 90% on node-4.
+Engineer A: Restarting the service.
+Engineer B: Stable now.",kubectl rollout restart deployment AuthService,High CPU usage on node-4 caused AuthService timeouts.,Restarted AuthService deployment.,Add rate limiting and investigate traffic spikes.,"{""services_affected"": [""AuthService""], ""hosts"": [""node-4""], ""ips"": [], ""timeline"": [{""time"": ""2026-02-01 16:24:26"", ""level"": ""ERROR"", ""event"": ""ERROR AuthService timeout on node-4""}, {""time"": ""2026-02-01 16:24:31"", ""level"": ""WARN"", ""event"": ""WARN CPU usage 90% on node-4""}, {""time"": ""2026-02-01 16:25:26"", ""level"": ""INFO"", ""event"": ""INFO Restart initiated for AuthService""}, {""time"": ""2026-02-01 16:26:26"", ""level"": ""INFO"", ""event"": ""INFO Service restored""}, {""time"": ""2026-02-01 16:27:26"", ""level"": ""INFO"", ""event"": ""INFO Health check passed for AuthService""}], ""commands"": {""raw"": ""kubectl rollout restart deployment AuthService"", ""has_command"": true, ""command_hint"": ""kubectl""}, ""stage1_parse_errors"": [], ""stage1_validation_issues"": []}",0
+INC_0131,disk_full,"2026-02-01 15:16:36 ERROR Disk space 100% on vm-9
+2026-02-01 15:16:56 WARN Write failure in ETLWorker
+2026-02-01 15:17:36 INFO Running cleanup on vm-9
+2026-02-01 15:18:36 INFO Old logs cleared
+2026-02-01 15:19:36 INFO Disk usage reduced to 55%","Engineer A: Storage is at 100% on vm-9.
+Engineer B: Looking for big files and old archives.
+Engineer A: Deleting old archives.
+Engineer B: System stable after cleanup.",journalctl --vacuum-time=7d,Temporary storage exhaustion on vm-9 led to write errors in ETLWorker.,Cleaned up logs and validated ETLWorker resumed normal writes.,Implement automated cleanup and disk threshold alerting.,"{""services_affected"": [], ""hosts"": [""vm-9""], ""ips"": [], ""timeline"": [{""time"": ""2026-02-01 15:16:36"", ""level"": ""ERROR"", ""event"": ""ERROR Disk space 100% on vm-9""}, {""time"": ""2026-02-01 15:16:56"", ""level"": ""WARN"", ""event"": ""WARN Write failure in ETLWorker""}, {""time"": ""2026-02-01 15:17:36"", ""level"": ""INFO"", ""event"": ""INFO Running cleanup on vm-9""}, {""time"": ""2026-02-01 15:18:36"", ""level"": ""INFO"", ""event"": ""INFO Old logs cleared""}, {""time"": ""2026-02-01 15:19:36"", ""level"": ""INFO"", ""event"": ""INFO Disk usage reduced to 55%""}], ""commands"": {""raw"": ""journalctl --vacuum-time=7d"", ""has_command"": true, ""command_hint"": ""journalctl""}, ""stage1_parse_errors"": [], ""stage1_validation_issues"": []}",0
+INC_0299,security_failed_logins,"2026-02-01 13:19:32 WARN Multiple failed login attempts (50 in 2m) from 172.16.3.99 on RDP
+2026-02-01 13:21:32 ERROR Account locked for user svc_ci
+2026-02-01 13:23:32 INFO Mitigation applied: IP blocked","Engineer A: Suspicious login attempts detected.
+Engineer B: Spike in failed logins on RDP.
+Engineer A: Applying a temporary firewall block.
+Engineer B: Alert cleared after mitigation.",ufw deny from 172.16.3.99,Brute-force login attempts from 172.16.3.99 targeting svc_ci via RDP.,Enabled rate limiting and blocked 172.16.3.99 to stop repeated failures.,Add bot protection/rate limits and alert on abnormal login patterns.,"{""services_affected"": [], ""hosts"": [], ""ips"": [""172.16.3.99""], ""timeline"": [{""time"": ""2026-02-01 13:19:32"", ""level"": ""WARN"", ""event"": ""WARN Multiple failed login attempts (50 in 2m) from 172.16.3.99 on RDP""}, {""time"": ""2026-02-01 13:21:32"", ""level"": ""ERROR"", ""event"": ""ERROR Account locked for user svc_ci""}, {""time"": ""2026-02-01 13:23:32"", ""level"": ""INFO"", ""event"": ""INFO Mitigation applied: IP blocked""}], ""commands"": {""raw"": ""ufw deny from 172.16.3.99"", ""has_command"": true, ""command_hint"": ""ufw""}, ""stage1_parse_errors"": [], ""stage1_validation_issues"": []}",0
+INC_0243,security_failed_logins,"2026-02-01 10:26:51 WARN Multiple failed login attempts (50 in 5m) from 203.0.113.14 on WebLogin
+2026-02-01 10:31:51 ERROR Account locked for user svc_ci
+2026-02-01 10:33:51 INFO Mitigation applied: IP blocked","Engineer A: Alert: multiple failed logins in a short window.
+Engineer B: Many failures targeting user svc_ci.
+Engineer A: Applying a temporary firewall block.
+Engineer B: Failures dropped after the block.
+Engineer A: Auditing other users for similar attempts on WebLogin.",ufw deny from 203.0.113.14,Suspicious login activity from 203.0.113.14 triggered account lockouts for svc_ci.,Blocked 203.0.113.14 at the firewall and locked svc_ci temporarily.,Restrict admin access by IP allowlist and enable MFA.,"{""services_affected"": [], ""hosts"": [], ""ips"": [""203.0.113.14""], ""timeline"": [{""time"": ""2026-02-01 10:26:51"", ""level"": ""WARN"", ""event"": ""WARN Multiple failed login attempts (50 in 5m) from 203.0.113.14 on WebLogin""}, {""time"": ""2026-02-01 10:31:51"", ""level"": ""ERROR"", ""event"": ""ERROR Account locked for user svc_ci""}, {""time"": ""2026-02-01 10:33:51"", ""level"": ""INFO"", ""event"": ""INFO Mitigation applied: IP blocked""}], ""commands"": {""raw"": ""ufw deny from 203.0.113.14"", ""has_command"": true, ""command_hint"": ""ufw""}, ""stage1_parse_errors"": [], ""stage1_validation_issues"": []}",0
+INC_0210,network_latency_timeout,"2026-02-01 11:26:57 ERROR API timeout in APIService
+2026-02-01 11:27:07 WARN Network latency 250ms
+2026-02-01 11:27:57 INFO Network stabilized","Engineer A: API timing out.
+Engineer B: Network latency spike detected.
+Engineer A: Monitoring traffic and error rates.
+Engineer B: Latency normalized.",curl -I https://upstream-service/health,Increased network latency and/or packet loss caused timeouts for APIService.,Confirmed recovery once latency returned to normal levels.,Add upstream dependency SLO alerts and tracing.,"{""services_affected"": [""APIService""], ""hosts"": [], ""ips"": [], ""timeline"": [{""time"": ""2026-02-01 11:26:57"", ""level"": ""ERROR"", ""event"": ""ERROR API timeout in APIService""}, {""time"": ""2026-02-01 11:27:07"", ""level"": ""WARN"", ""event"": ""WARN Network latency 250ms""}, {""time"": ""2026-02-01 11:27:57"", ""level"": ""INFO"", ""event"": ""INFO Network stabilized""}], ""commands"": {""raw"": ""curl -I https://upstream-service/health"", ""has_command"": true, ""command_hint"": ""curl""}, ""stage1_parse_errors"": [], ""stage1_validation_issues"": []}",0
+INC_0297,security_failed_logins,"2026-02-01 17:45:30 WARN Multiple failed login attempts (50 in 2m) from 10.10.14.8 on WebLogin
+2026-02-01 17:49:30 INFO Mitigation applied: IP blocked","Engineer A: Potential brute-force activity detected.
+Engineer B: Source IP 10.10.14.8 is triggering failures.
+Engineer A: Blocking the IP now.
+Engineer B: No more attempts observed.",iptables -A INPUT -s 10.10.14.8 -j DROP,Suspicious login activity from 10.10.14.8 triggered account lockouts for ops_user.,Blocked 10.10.14.8 at the firewall and locked ops_user temporarily.,Enable MFA and add rate-limiting for authentication.,"{""services_affected"": [], ""hosts"": [], ""ips"": [""10.10.14.8""], ""timeline"": [{""time"": ""2026-02-01 17:45:30"", ""level"": ""WARN"", ""event"": ""WARN Multiple failed login attempts (50 in 2m) from 10.10.14.8 on WebLogin""}, {""time"": ""2026-02-01 17:49:30"", ""level"": ""INFO"", ""event"": ""INFO Mitigation applied: IP blocked""}], ""commands"": {""raw"": ""iptables -A INPUT -s 10.10.14.8 -j DROP"", ""has_command"": true, ""command_hint"": ""iptables""}, ""stage1_parse_errors"": [], ""stage1_validation_issues"": []}",0
+INC_0165,disk_full,"2026-02-01 09:06:57 ERROR Disk space 100% on vm-2
+2026-02-01 09:07:17 WARN Write failure in ETLWorker
+2026-02-01 09:07:32 WARN No space left on device on vm-2
+2026-02-01 09:07:57 INFO Running cleanup on vm-2
+2026-02-01 09:08:57 INFO Old logs cleared
+2026-02-01 09:09:57 INFO Disk usage reduced to 70%","Engineer A: Disk full on vm-2.
+Engineer B: Checking largest directories now.
+Engineer A: Deleting old archives.
+Engineer B: Disk usage dropped; service recovering.",du -sh /var/* | sort -h,Disk exhaustion on vm-2 caused write failures for ETLWorker.,Removed large/old log files and verified disk recovery.,Configure log rotation and disk usage alerts.,"{""services_affected"": [], ""hosts"": [""vm-2""], ""ips"": [], ""timeline"": [{""time"": ""2026-02-01 09:06:57"", ""level"": ""ERROR"", ""event"": ""ERROR Disk space 100% on vm-2""}, {""time"": ""2026-02-01 09:07:17"", ""level"": ""WARN"", ""event"": ""WARN Write failure in ETLWorker""}, {""time"": ""2026-02-01 09:07:32"", ""level"": ""WARN"", ""event"": ""WARN No space left on device on vm-2""}, {""time"": ""2026-02-01 09:07:57"", ""level"": ""INFO"", ""event"": ""INFO Running cleanup on vm-2""}, {""time"": ""2026-02-01 09:08:57"", ""level"": ""INFO"", ""event"": ""INFO Old logs cleared""}, {""time"": ""2026-02-01 09:09:57"", ""level"": ""INFO"", ""event"": ""INFO Disk usage reduced to 70%""}], ""commands"": {""raw"": ""du -sh /var/* | sort -h"", ""has_command"": false, ""command_hint"": null}, ""stage1_parse_errors"": [], ""stage1_validation_issues"": []}",0
+INC_0019,cpu_timeout,"2026-02-01 18:14:49 ERROR Gateway timeout on node-4
+2026-02-01 18:14:54 WARN CPU usage 99% on node-4
+2026-02-01 18:15:49 INFO Restart initiated for Gateway
+2026-02-01 18:16:49 INFO Service restored","Engineer A: Seeing timeouts on Gateway.
+Engineer B: CPU is at 99% on node-4.
+Engineer A: Rolling restart now.
+Engineer B: Errors stopped.",kubectl rollout restart deployment Gateway,High CPU usage on node-4 caused Gateway timeouts.,Restarted Gateway deployment.,Configure HPA and set CPU thresholds.,"{""services_affected"": [""Gateway""], ""hosts"": [""node-4""], ""ips"": [], ""timeline"": [{""time"": ""2026-02-01 18:14:49"", ""level"": ""ERROR"", ""event"": ""ERROR Gateway timeout on node-4""}, {""time"": ""2026-02-01 18:14:54"", ""level"": ""WARN"", ""event"": ""WARN CPU usage 99% on node-4""}, {""time"": ""2026-02-01 18:15:49"", ""level"": ""INFO"", ""event"": ""INFO Restart initiated for Gateway""}, {""time"": ""2026-02-01 18:16:49"", ""level"": ""INFO"", ""event"": ""INFO Service restored""}], ""commands"": {""raw"": ""kubectl rollout restart deployment Gateway"", ""has_command"": true, ""command_hint"": ""kubectl""}, ""stage1_parse_errors"": [], ""stage1_validation_issues"": []}",0
+INC_0240,network_latency_timeout,"2026-02-01 18:38:51 ERROR API timeout in OrderService
+2026-02-01 18:39:01 WARN Network latency 900ms
+2026-02-01 18:39:51 INFO Network stabilized","Engineer A: Clients reporting slow responses.
+Engineer B: Packet loss observed on the link.
+Engineer A: Investigating recent network changes.
+Engineer B: Error rates back to normal.
+Engineer A: No application deploys in the last 30 minutes.",curl -I https://upstream-service/health,Increased network latency and/or packet loss caused timeouts for OrderService.,Observed stabilization after investigating network metrics and dependencies.,Implement retry/backoff and alert on upstream latency spikes.,"{""services_affected"": [""OrderService""], ""hosts"": [], ""ips"": [], ""timeline"": [{""time"": ""2026-02-01 18:38:51"", ""level"": ""ERROR"", ""event"": ""ERROR API timeout in OrderService""}, {""time"": ""2026-02-01 18:39:01"", ""level"": ""WARN"", ""event"": ""WARN Network latency 900ms""}, {""time"": ""2026-02-01 18:39:51"", ""level"": ""INFO"", ""event"": ""INFO Network stabilized""}], ""commands"": {""raw"": ""curl -I https://upstream-service/health"", ""has_command"": true, ""command_hint"": ""curl""}, ""stage1_parse_errors"": [], ""stage1_validation_issues"": []}",0
+INC_0206,network_latency_timeout,"2026-02-01 17:34:47 ERROR API timeout in OrderService
+2026-02-01 17:34:57 WARN Network latency 180ms
+2026-02-01 17:35:47 INFO Network stabilized","Engineer A: Clients reporting slow responses.
+Engineer B: Upstream dependency is slow.
+Engineer A: Monitoring traffic and error rates.
+Engineer B: Timeouts stopped.
+Engineer A: No application deploys in the last 30 minutes.",,Network latency spike (~180ms) caused request timeouts in OrderService.,Validated network recovery and continued monitoring until stable.,Add upstream dependency SLO alerts and tracing.,"{""services_affected"": [""OrderService""], ""hosts"": [], ""ips"": [], ""timeline"": [{""time"": ""2026-02-01 17:34:47"", ""level"": ""ERROR"", ""event"": ""ERROR API timeout in OrderService""}, {""time"": ""2026-02-01 17:34:57"", ""level"": ""WARN"", ""event"": ""WARN Network latency 180ms""}, {""time"": ""2026-02-01 17:35:47"", ""level"": ""INFO"", ""event"": ""INFO Network stabilized""}], ""commands"": {""raw"": """", ""has_command"": false, ""command_hint"": null}, ""stage1_parse_errors"": [], ""stage1_validation_issues"": []}",0
+INC_0252,security_failed_logins,"2026-02-01 13:40:46 WARN Multiple failed login attempts (80 in 5m) from 192.168.1.25 on SSH
+2026-02-01 13:45:46 ERROR Account locked for user ops_user
+2026-02-01 13:47:46 INFO Mitigation applied: IP blocked
+2026-02-01 13:50:46 INFO Failed login rate returned to baseline","Engineer A: Suspicious login attempts detected.
+Engineer B: Spike in failed logins on SSH.
+Engineer A: Enabling rate limiting on auth.
+Engineer B: Alert cleared after mitigation.
+Engineer A: Auditing other users for similar attempts on SSH.","netsh advfirewall firewall add rule name=""Block 192.168.1.25"" dir=in action=block remoteip=192.168.1.25",Repeated failed authentication attempts from 192.168.1.25 indicated a brute-force attempt.,Enabled rate limiting and blocked 192.168.1.25 to stop repeated failures.,"Require MFA, reduce exposed auth surface, and monitor failed login spikes.","{""services_affected"": [], ""hosts"": [], ""ips"": [""192.168.1.25""], ""timeline"": [{""time"": ""2026-02-01 13:40:46"", ""level"": ""WARN"", ""event"": ""WARN Multiple failed login attempts (80 in 5m) from 192.168.1.25 on SSH""}, {""time"": ""2026-02-01 13:45:46"", ""level"": ""ERROR"", ""event"": ""ERROR Account locked for user ops_user""}, {""time"": ""2026-02-01 13:47:46"", ""level"": ""INFO"", ""event"": ""INFO Mitigation applied: IP blocked""}, {""time"": ""2026-02-01 13:50:46"", ""level"": ""INFO"", ""event"": ""INFO Failed login rate returned to baseline""}], ""commands"": {""raw"": ""netsh advfirewall firewall add rule name=\""Block 192.168.1.25\"" dir=in action=block remoteip=192.168.1.25"", ""has_command"": true, ""command_hint"": ""netsh""}, ""stage1_parse_errors"": [], ""stage1_validation_issues"": []}",0
+INC_0121,disk_full,"2026-02-01 12:33:57 ERROR Disk space 100% on node-6
+2026-02-01 12:34:17 WARN Write failure in ETLWorker
+2026-02-01 12:35:57 INFO Old logs cleared
+2026-02-01 12:36:57 INFO Disk usage reduced to 55%","Engineer A: No space left on device on node-6.
+Engineer B: Checking largest directories now.
+Engineer A: Deleting old archives.
+Engineer B: Disk usage dropped; service recovering.",du -sh /var/* | sort -h ; journalctl --vacuum-time=7d,Disk exhaustion on node-6 caused write failures for ETLWorker.,Cleared old logs and temporary files to free disk space.,Implement automated cleanup and disk threshold alerting.,"{""services_affected"": [], ""hosts"": [""node-6""], ""ips"": [], ""timeline"": [{""time"": ""2026-02-01 12:33:57"", ""level"": ""ERROR"", ""event"": ""ERROR Disk space 100% on node-6""}, {""time"": ""2026-02-01 12:34:17"", ""level"": ""WARN"", ""event"": ""WARN Write failure in ETLWorker""}, {""time"": ""2026-02-01 12:35:57"", ""level"": ""INFO"", ""event"": ""INFO Old logs cleared""}, {""time"": ""2026-02-01 12:36:57"", ""level"": ""INFO"", ""event"": ""INFO Disk usage reduced to 55%""}], ""commands"": {""raw"": ""du -sh /var/* | sort -h ; journalctl --vacuum-time=7d"", ""has_command"": true, ""command_hint"": ""journalctl""}, ""stage1_parse_errors"": [], ""stage1_validation_issues"": []}",0
+INC_0238,network_latency_timeout,"2026-02-01 09:33:18 ERROR API timeout in OrderService
+2026-02-01 09:33:28 WARN Network latency 180ms
+2026-02-01 09:33:38 WARN Increased error rate detected for OrderService
+2026-02-01 09:34:18 INFO Network stabilized","Engineer A: Requests are timing out intermittently.
+Engineer B: Network latency spike detected.
+Engineer A: Checking upstream health and metrics.
+Engineer B: Latency normalized.",,Upstream network instability led to timeouts observed in OrderService.,Observed stabilization after investigating network metrics and dependencies.,Implement retry/backoff and alert on upstream latency spikes.,"{""services_affected"": [""OrderService""], ""hosts"": [], ""ips"": [], ""timeline"": [{""time"": ""2026-02-01 09:33:18"", ""level"": ""ERROR"", ""event"": ""ERROR API timeout in OrderService""}, {""time"": ""2026-02-01 09:33:28"", ""level"": ""WARN"", ""event"": ""WARN Network latency 180ms""}, {""time"": ""2026-02-01 09:33:38"", ""level"": ""WARN"", ""event"": ""WARN Increased error rate detected for OrderService""}, {""time"": ""2026-02-01 09:34:18"", ""level"": ""INFO"", ""event"": ""INFO Network stabilized""}], ""commands"": {""raw"": """", ""has_command"": false, ""command_hint"": null}, ""stage1_parse_errors"": [], ""stage1_validation_issues"": []}",0
+INC_0232,network_latency_timeout,"2026-02-01 17:50:07 ERROR API timeout in OrderService
+2026-02-01 17:50:17 WARN Network latency 600ms
+2026-02-01 17:50:27 WARN Increased error rate detected for OrderService
+2026-02-01 17:50:52 INFO Checking upstream dependency health
+2026-02-01 17:51:07 INFO Network stabilized","Engineer A: API timing out.
+Engineer B: Packet loss observed on the link.
+Engineer A: Monitoring traffic and error rates.
+Engineer B: System looks stable now.",ping -c 5 upstream-service,Increased network latency and/or packet loss caused timeouts for OrderService.,Observed stabilization after investigating network metrics and dependencies.,Add latency SLO alerts and investigate network bottlenecks.,"{""services_affected"": [""OrderService""], ""hosts"": [], ""ips"": [], ""timeline"": [{""time"": ""2026-02-01 17:50:07"", ""level"": ""ERROR"", ""event"": ""ERROR API timeout in OrderService""}, {""time"": ""2026-02-01 17:50:17"", ""level"": ""WARN"", ""event"": ""WARN Network latency 600ms""}, {""time"": ""2026-02-01 17:50:27"", ""level"": ""WARN"", ""event"": ""WARN Increased error rate detected for OrderService""}, {""time"": ""2026-02-01 17:50:52"", ""level"": ""INFO"", ""event"": ""INFO Checking upstream dependency health""}, {""time"": ""2026-02-01 17:51:07"", ""level"": ""INFO"", ""event"": ""INFO Network stabilized""}], ""commands"": {""raw"": ""ping -c 5 upstream-service"", ""has_command"": true, ""command_hint"": ""ping""}, ""stage1_parse_errors"": [], ""stage1_validation_issues"": []}",0
+INC_0071,db_connection_failure,"2026-02-01 14:37:12 ERROR PaymentService failed to connect to database
+2026-02-01 14:37:22 WARN Connection refused on db-server-2
+2026-02-01 14:37:42 WARN DB health check failed on db-server-2
+2026-02-01 14:38:12 INFO Database service restarted
+2026-02-01 14:39:12 INFO Connection restored","Engineer A: Seeing DB connection failures.
+Engineer B: db-server-2 appears down/unreachable.
+Engineer A: Cycling the DB service.
+Engineer B: DB is back online.
+Engineer A: Monitoring connections for 2 minutes.",systemctl restart mysql,Temporary DB outage on db-server-2 caused connection failures.,Restarted mysql service to restore connectivity.,Add failover strategy and improve DB uptime monitoring.,"{""services_affected"": [""PaymentService""], ""hosts"": [""db-server-2""], ""ips"": [], ""timeline"": [{""time"": ""2026-02-01 14:37:12"", ""level"": ""ERROR"", ""event"": ""ERROR PaymentService failed to connect to database""}, {""time"": ""2026-02-01 14:37:22"", ""level"": ""WARN"", ""event"": ""WARN Connection refused on db-server-2""}, {""time"": ""2026-02-01 14:37:42"", ""level"": ""WARN"", ""event"": ""WARN DB health check failed on db-server-2""}, {""time"": ""2026-02-01 14:38:12"", ""level"": ""INFO"", ""event"": ""INFO Database service restarted""}, {""time"": ""2026-02-01 14:39:12"", ""level"": ""INFO"", ""event"": ""INFO Connection restored""}], ""commands"": {""raw"": ""systemctl restart mysql"", ""has_command"": true, ""command_hint"": ""systemctl""}, ""stage1_parse_errors"": [], ""stage1_validation_issues"": []}",0
+INC_0054,cpu_timeout,"2026-02-01 16:40:17 ERROR BillingService timeout on node-4
+2026-02-01 16:40:22 WARN CPU usage 92% on node-4
+2026-02-01 16:40:37 WARN Queue depth high for BillingService
+2026-02-01 16:41:17 INFO Restart initiated for BillingService
+2026-02-01 16:42:17 INFO Service restored
+2026-02-01 16:43:17 INFO Health check passed for BillingService","Engineer A: BillingService requests are failing.
+Engineer B: High load on node-4 (CPU 92%).
+Engineer A: Restarting deployment.
+Engineer B: Service looks healthy.",kubectl rollout restart deployment BillingService,High CPU usage on node-4 caused BillingService timeouts.,Restarted BillingService deployment.,Enable auto-scaling and add CPU alerts.,"{""services_affected"": [""BillingService""], ""hosts"": [""node-4""], ""ips"": [], ""timeline"": [{""time"": ""2026-02-01 16:40:17"", ""level"": ""ERROR"", ""event"": ""ERROR BillingService timeout on node-4""}, {""time"": ""2026-02-01 16:40:22"", ""level"": ""WARN"", ""event"": ""WARN CPU usage 92% on node-4""}, {""time"": ""2026-02-01 16:40:37"", ""level"": ""WARN"", ""event"": ""WARN Queue depth high for BillingService""}, {""time"": ""2026-02-01 16:41:17"", ""level"": ""INFO"", ""event"": ""INFO Restart initiated for BillingService""}, {""time"": ""2026-02-01 16:42:17"", ""level"": ""INFO"", ""event"": ""INFO Service restored""}, {""time"": ""2026-02-01 16:43:17"", ""level"": ""INFO"", ""event"": ""INFO Health check passed for BillingService""}], ""commands"": {""raw"": ""kubectl rollout restart deployment BillingService"", ""has_command"": true, ""command_hint"": ""kubectl""}, ""stage1_parse_errors"": [], ""stage1_validation_issues"": []}",0
+INC_0212,network_latency_timeout,"2026-02-01 13:31:16 ERROR API timeout in SearchService
+2026-02-01 13:31:26 WARN Network latency 900ms
+2026-02-01 13:32:01 INFO Checking upstream dependency health
+2026-02-01 13:32:16 INFO Network stabilized
+2026-02-01 13:33:16 INFO Latency back to normal for SearchService","Engineer A: Seeing elevated latency and timeouts.
+Engineer B: Packet loss observed on the link.
+Engineer A: Checking upstream health and metrics.
+Engineer B: System looks stable now.
+Engineer A: No application deploys in the last 30 minutes.",curl -I https://upstream-service/health,Transient network degradation (latency ~900ms) impacted SearchService availability.,Monitored the system until network conditions stabilized.,Implement retry/backoff and alert on upstream latency spikes.,"{""services_affected"": [""SearchService""], ""hosts"": [], ""ips"": [], ""timeline"": [{""time"": ""2026-02-01 13:31:16"", ""level"": ""ERROR"", ""event"": ""ERROR API timeout in SearchService""}, {""time"": ""2026-02-01 13:31:26"", ""level"": ""WARN"", ""event"": ""WARN Network latency 900ms""}, {""time"": ""2026-02-01 13:32:01"", ""level"": ""INFO"", ""event"": ""INFO Checking upstream dependency health""}, {""time"": ""2026-02-01 13:32:16"", ""level"": ""INFO"", ""event"": ""INFO Network stabilized""}, {""time"": ""2026-02-01 13:33:16"", ""level"": ""INFO"", ""event"": ""INFO Latency back to normal for SearchService""}], ""commands"": {""raw"": ""curl -I https://upstream-service/health"", ""has_command"": true, ""command_hint"": ""curl""}, ""stage1_parse_errors"": [], ""stage1_validation_issues"": []}",0
+INC_0271,security_failed_logins,"2026-02-01 18:15:46 WARN Multiple failed login attempts (50 in 5m) from 10.10.14.8 on WebLogin
+2026-02-01 18:20:46 ERROR Account locked for user root
+2026-02-01 18:22:46 INFO Mitigation applied: IP blocked
+2026-02-01 18:25:46 INFO Failed login rate returned to baseline","Engineer A: Seeing repeated authentication failures.
+Engineer B: Many failures targeting user root.
+Engineer A: Enabling rate limiting on auth.
+Engineer B: Traffic looks normal now.",iptables -A INPUT -s 10.10.14.8 -j DROP,Repeated failed authentication attempts from 10.10.14.8 indicated a brute-force attempt.,Applied firewall rule to drop traffic from 10.10.14.8 and monitored authentication logs.,Configure account lockout policies and MFA for privileged accounts.,"{""services_affected"": [], ""hosts"": [], ""ips"": [""10.10.14.8""], ""timeline"": [{""time"": ""2026-02-01 18:15:46"", ""level"": ""WARN"", ""event"": ""WARN Multiple failed login attempts (50 in 5m) from 10.10.14.8 on WebLogin""}, {""time"": ""2026-02-01 18:20:46"", ""level"": ""ERROR"", ""event"": ""ERROR Account locked for user root""}, {""time"": ""2026-02-01 18:22:46"", ""level"": ""INFO"", ""event"": ""INFO Mitigation applied: IP blocked""}, {""time"": ""2026-02-01 18:25:46"", ""level"": ""INFO"", ""event"": ""INFO Failed login rate returned to baseline""}], ""commands"": {""raw"": ""iptables -A INPUT -s 10.10.14.8 -j DROP"", ""has_command"": true, ""command_hint"": ""iptables""}, ""stage1_parse_errors"": [], ""stage1_validation_issues"": []}",0
+INC_0055,cpu_timeout,"2026-02-01 15:13:14 ERROR UserService timeout on vm-9
+2026-02-01 15:13:19 WARN CPU usage 97% on vm-9
+2026-02-01 15:13:34 WARN Queue depth high for UserService
+2026-02-01 15:14:14 INFO Restart initiated for UserService
+2026-02-01 15:15:14 INFO Service restored
+2026-02-01 15:16:14 INFO Health check passed for UserService","Engineer A: Users reporting errors on UserService.
+Engineer B: vm-9 looks overloaded (CPU 97%).
+Engineer A: Rolling restart now.
+Engineer B: Traffic is back to normal.",kubectl rollout restart deployment UserService,High CPU usage on vm-9 caused UserService timeouts.,Restarted UserService deployment.,Tune resource limits/requests and add alerts.,"{""services_affected"": [""UserService""], ""hosts"": [""vm-9""], ""ips"": [], ""timeline"": [{""time"": ""2026-02-01 15:13:14"", ""level"": ""ERROR"", ""event"": ""ERROR UserService timeout on vm-9""}, {""time"": ""2026-02-01 15:13:19"", ""level"": ""WARN"", ""event"": ""WARN CPU usage 97% on vm-9""}, {""time"": ""2026-02-01 15:13:34"", ""level"": ""WARN"", ""event"": ""WARN Queue depth high for UserService""}, {""time"": ""2026-02-01 15:14:14"", ""level"": ""INFO"", ""event"": ""INFO Restart initiated for UserService""}, {""time"": ""2026-02-01 15:15:14"", ""level"": ""INFO"", ""event"": ""INFO Service restored""}, {""time"": ""2026-02-01 15:16:14"", ""level"": ""INFO"", ""event"": ""INFO Health check passed for UserService""}], ""commands"": {""raw"": ""kubectl rollout restart deployment UserService"", ""has_command"": true, ""command_hint"": ""kubectl""}, ""stage1_parse_errors"": [], ""stage1_validation_issues"": []}",0
+INC_0220,network_latency_timeout,"2026-02-01 18:11:17 ERROR API timeout in OrderService
+2026-02-01 18:11:27 WARN Network latency 180ms
+2026-02-01 18:11:37 WARN Increased error rate detected for OrderService
+2026-02-01 18:12:02 INFO Checking upstream dependency health
+2026-02-01 18:12:17 INFO Network stabilized
+2026-02-01 18:13:17 INFO Latency back to normal for OrderService","Engineer A: Clients reporting slow responses.
+Engineer B: Network latency spike detected.
+Engineer A: Investigating recent network changes.
+Engineer B: System looks stable now.
+Engineer A: No application deploys in the last 30 minutes.",curl -I https://upstream-service/health,Increased network latency and/or packet loss caused timeouts for OrderService.,Observed stabilization after investigating network metrics and dependencies.,Set up packet loss monitoring and alert thresholds.,"{""services_affected"": [""OrderService""], ""hosts"": [], ""ips"": [], ""timeline"": [{""time"": ""2026-02-01 18:11:17"", ""level"": ""ERROR"", ""event"": ""ERROR API timeout in OrderService""}, {""time"": ""2026-02-01 18:11:27"", ""level"": ""WARN"", ""event"": ""WARN Network latency 180ms""}, {""time"": ""2026-02-01 18:11:37"", ""level"": ""WARN"", ""event"": ""WARN Increased error rate detected for OrderService""}, {""time"": ""2026-02-01 18:12:02"", ""level"": ""INFO"", ""event"": ""INFO Checking upstream dependency health""}, {""time"": ""2026-02-01 18:12:17"", ""level"": ""INFO"", ""event"": ""INFO Network stabilized""}, {""time"": ""2026-02-01 18:13:17"", ""level"": ""INFO"", ""event"": ""INFO Latency back to normal for OrderService""}], ""commands"": {""raw"": ""curl -I https://upstream-service/health"", ""has_command"": true, ""command_hint"": ""curl""}, ""stage1_parse_errors"": [], ""stage1_validation_issues"": []}",0
+INC_0086,db_connection_failure,"2026-02-01 15:37:05 ERROR OrderService failed to connect to database
+2026-02-01 15:37:15 WARN Connection refused on db-server-1
+2026-02-01 15:38:05 INFO Database service restarted
+2026-02-01 15:39:05 INFO Connection restored","Engineer A: Database connection errors in the app.
+Engineer B: DB host db-server-1 is failing health checks.
+Engineer A: Restarting DB now.
+Engineer B: DB is back online.
+Engineer A: Monitoring connections for 2 minutes.",systemctl restart mysql,DB service disruption on db-server-1 led to application errors.,Performed DB service restart (mysql) and confirmed recovery.,Add DB health checks and connection retry/backoff.,"{""services_affected"": [""OrderService""], ""hosts"": [""db-server-1""], ""ips"": [], ""timeline"": [{""time"": ""2026-02-01 15:37:05"", ""level"": ""ERROR"", ""event"": ""ERROR OrderService failed to connect to database""}, {""time"": ""2026-02-01 15:37:15"", ""level"": ""WARN"", ""event"": ""WARN Connection refused on db-server-1""}, {""time"": ""2026-02-01 15:38:05"", ""level"": ""INFO"", ""event"": ""INFO Database service restarted""}, {""time"": ""2026-02-01 15:39:05"", ""level"": ""INFO"", ""event"": ""INFO Connection restored""}], ""commands"": {""raw"": ""systemctl restart mysql"", ""has_command"": true, ""command_hint"": ""systemctl""}, ""stage1_parse_errors"": [], ""stage1_validation_issues"": []}",0
+INC_0176,disk_full,"2026-02-01 17:18:42 ERROR Disk space 100% on node-6
+2026-02-01 17:19:02 WARN Write failure in ETLWorker
+2026-02-01 17:19:42 INFO Running cleanup on node-6
+2026-02-01 17:20:42 INFO Old logs cleared
+2026-02-01 17:21:42 INFO Disk usage reduced to 70%
+2026-02-01 17:22:42 INFO ETLWorker health check passed","Engineer A: No space left on device on node-6.
+Engineer B: Investigating /var/log and temp files.
+Engineer A: Rotating logs and cleaning up.
+Engineer B: Disk usage dropped; service recovering.",rm -rf /var/log/old_logs/*,"Disk usage reached 100% on node-6, causing failures in ETLWorker.",Removed large/old log files and verified disk recovery.,"Alert earlier (e.g., 80% disk) and review capacity.","{""services_affected"": [], ""hosts"": [""node-6""], ""ips"": [], ""timeline"": [{""time"": ""2026-02-01 17:18:42"", ""level"": ""ERROR"", ""event"": ""ERROR Disk space 100% on node-6""}, {""time"": ""2026-02-01 17:19:02"", ""level"": ""WARN"", ""event"": ""WARN Write failure in ETLWorker""}, {""time"": ""2026-02-01 17:19:42"", ""level"": ""INFO"", ""event"": ""INFO Running cleanup on node-6""}, {""time"": ""2026-02-01 17:20:42"", ""level"": ""INFO"", ""event"": ""INFO Old logs cleared""}, {""time"": ""2026-02-01 17:21:42"", ""level"": ""INFO"", ""event"": ""INFO Disk usage reduced to 70%""}, {""time"": ""2026-02-01 17:22:42"", ""level"": ""INFO"", ""event"": ""INFO ETLWorker health check passed""}], ""commands"": {""raw"": ""rm -rf /var/log/old_logs/*"", ""has_command"": true, ""command_hint"": ""rm""}, ""stage1_parse_errors"": [], ""stage1_validation_issues"": []}",0
+INC_0077,db_connection_failure,"2026-02-01 10:13:16 ERROR OrderService failed to connect to database
+2026-02-01 10:13:26 WARN Connection refused on db-server-1
+2026-02-01 10:13:46 WARN DB health check failed on db-server-1
+2026-02-01 10:14:16 INFO Database service restarted
+2026-02-01 10:15:16 INFO Connection restored","Engineer A: Requests failing due to DB connectivity.
+Engineer B: Connection refused on db-server-1.
+Engineer A: Restarting DB now.
+Engineer B: DB is back online.",systemctl restart mysql,Database service on db-server-1 was unavailable (connection refused).,Performed DB service restart (mysql) and confirmed recovery.,Add failover strategy and improve DB uptime monitoring.,"{""services_affected"": [""OrderService""], ""hosts"": [""db-server-1""], ""ips"": [], ""timeline"": [{""time"": ""2026-02-01 10:13:16"", ""level"": ""ERROR"", ""event"": ""ERROR OrderService failed to connect to database""}, {""time"": ""2026-02-01 10:13:26"", ""level"": ""WARN"", ""event"": ""WARN Connection refused on db-server-1""}, {""time"": ""2026-02-01 10:13:46"", ""level"": ""WARN"", ""event"": ""WARN DB health check failed on db-server-1""}, {""time"": ""2026-02-01 10:14:16"", ""level"": ""INFO"", ""event"": ""INFO Database service restarted""}, {""time"": ""2026-02-01 10:15:16"", ""level"": ""INFO"", ""event"": ""INFO Connection restored""}], ""commands"": {""raw"": ""systemctl restart mysql"", ""has_command"": true, ""command_hint"": ""systemctl""}, ""stage1_parse_errors"": [], ""stage1_validation_issues"": []}",0
+INC_0204,network_latency_timeout,"2026-02-01 16:15:41 ERROR API timeout in OrderService
+2026-02-01 16:15:51 WARN Network latency 300ms
+2026-02-01 16:16:01 WARN Increased error rate detected for OrderService
+2026-02-01 16:16:26 INFO Checking upstream dependency health
+2026-02-01 16:16:41 INFO Network stabilized","Engineer A: Seeing elevated latency and timeouts.
+Engineer B: Packet loss observed on the link.
+Engineer A: Investigating recent network changes.
+Engineer B: System looks stable now.
+Engineer A: No application deploys in the last 30 minutes.",ping -c 5 upstream-service,Transient network degradation (latency ~300ms) impacted OrderService availability.,Observed stabilization after investigating network metrics and dependencies.,Implement client-side timeouts + exponential backoff.,"{""services_affected"": [""OrderService""], ""hosts"": [], ""ips"": [], ""timeline"": [{""time"": ""2026-02-01 16:15:41"", ""level"": ""ERROR"", ""event"": ""ERROR API timeout in OrderService""}, {""time"": ""2026-02-01 16:15:51"", ""level"": ""WARN"", ""event"": ""WARN Network latency 300ms""}, {""time"": ""2026-02-01 16:16:01"", ""level"": ""WARN"", ""event"": ""WARN Increased error rate detected for OrderService""}, {""time"": ""2026-02-01 16:16:26"", ""level"": ""INFO"", ""event"": ""INFO Checking upstream dependency health""}, {""time"": ""2026-02-01 16:16:41"", ""level"": ""INFO"", ""event"": ""INFO Network stabilized""}], ""commands"": {""raw"": ""ping -c 5 upstream-service"", ""has_command"": true, ""command_hint"": ""ping""}, ""stage1_parse_errors"": [], ""stage1_validation_issues"": []}",0
+INC_0011,cpu_timeout,"2026-02-01 18:22:17 ERROR OrderService timeout on vm-7
+2026-02-01 18:22:22 WARN CPU usage 99% on vm-7
+2026-02-01 18:22:37 WARN Queue depth high for OrderService
+2026-02-01 18:23:17 INFO Restart initiated for OrderService
+2026-02-01 18:24:17 INFO Service restored","Engineer A: OrderService requests are failing.
+Engineer B: vm-7 looks overloaded (CPU 99%).
+Engineer A: Rolling restart now.
+Engineer B: Errors stopped.",kubectl rollout restart deployment OrderService,High CPU usage on vm-7 caused OrderService timeouts.,Restarted OrderService deployment.,Configure HPA and set CPU thresholds.,"{""services_affected"": [""OrderService""], ""hosts"": [""vm-7""], ""ips"": [], ""timeline"": [{""time"": ""2026-02-01 18:22:17"", ""level"": ""ERROR"", ""event"": ""ERROR OrderService timeout on vm-7""}, {""time"": ""2026-02-01 18:22:22"", ""level"": ""WARN"", ""event"": ""WARN CPU usage 99% on vm-7""}, {""time"": ""2026-02-01 18:22:37"", ""level"": ""WARN"", ""event"": ""WARN Queue depth high for OrderService""}, {""time"": ""2026-02-01 18:23:17"", ""level"": ""INFO"", ""event"": ""INFO Restart initiated for OrderService""}, {""time"": ""2026-02-01 18:24:17"", ""level"": ""INFO"", ""event"": ""INFO Service restored""}], ""commands"": {""raw"": ""kubectl rollout restart deployment OrderService"", ""has_command"": true, ""command_hint"": ""kubectl""}, ""stage1_parse_errors"": [], ""stage1_validation_issues"": []}",0
+INC_0115,db_connection_failure,"2026-02-01 14:56:06 ERROR OrderService failed to connect to database
+2026-02-01 14:56:16 WARN Connection refused on db-server-2
+2026-02-01 14:57:06 INFO Database service restarted
+2026-02-01 14:58:06 INFO Connection restored","Engineer A: Seeing DB connection failures.
+Engineer B: db-server-2 appears down/unreachable.
+Engineer A: Cycling the DB service.
+Engineer B: Errors cleared after restart.
+Engineer A: Monitoring connections for 2 minutes.",systemctl restart mysql,DB service disruption on db-server-2 led to application errors.,Restarted mysql service to restore connectivity.,Add circuit breaker + retries in the application.,"{""services_affected"": [""OrderService""], ""hosts"": [""db-server-2""], ""ips"": [], ""timeline"": [{""time"": ""2026-02-01 14:56:06"", ""level"": ""ERROR"", ""event"": ""ERROR OrderService failed to connect to database""}, {""time"": ""2026-02-01 14:56:16"", ""level"": ""WARN"", ""event"": ""WARN Connection refused on db-server-2""}, {""time"": ""2026-02-01 14:57:06"", ""level"": ""INFO"", ""event"": ""INFO Database service restarted""}, {""time"": ""2026-02-01 14:58:06"", ""level"": ""INFO"", ""event"": ""INFO Connection restored""}], ""commands"": {""raw"": ""systemctl restart mysql"", ""has_command"": true, ""command_hint"": ""systemctl""}, ""stage1_parse_errors"": [], ""stage1_validation_issues"": []}",0
+INC_0300,security_failed_logins,"2026-02-01 17:01:50 WARN Multiple failed login attempts (50 in 2m) from 203.0.113.14 on WebLogin
+2026-02-01 17:03:50 ERROR Account locked for user root
+2026-02-01 17:04:50 INFO Authentication throttling enabled for WebLogin
+2026-02-01 17:05:50 INFO Mitigation applied: IP blocked","Engineer A: Suspicious login attempts detected.
+Engineer B: Many failures targeting user root.
+Engineer A: Enabling rate limiting on auth.
+Engineer B: Failures dropped after the block.","netsh advfirewall firewall add rule name=""Block 203.0.113.14"" dir=in action=block remoteip=203.0.113.14",Brute-force login attempts from 203.0.113.14 targeting root via WebLogin.,Applied firewall rule to drop traffic from 203.0.113.14 and monitored authentication logs.,"Require MFA, reduce exposed auth surface, and monitor failed login spikes.","{""services_affected"": [], ""hosts"": [], ""ips"": [""203.0.113.14""], ""timeline"": [{""time"": ""2026-02-01 17:01:50"", ""level"": ""WARN"", ""event"": ""WARN Multiple failed login attempts (50 in 2m) from 203.0.113.14 on WebLogin""}, {""time"": ""2026-02-01 17:03:50"", ""level"": ""ERROR"", ""event"": ""ERROR Account locked for user root""}, {""time"": ""2026-02-01 17:04:50"", ""level"": ""INFO"", ""event"": ""INFO Authentication throttling enabled for WebLogin""}, {""time"": ""2026-02-01 17:05:50"", ""level"": ""INFO"", ""event"": ""INFO Mitigation applied: IP blocked""}], ""commands"": {""raw"": ""netsh advfirewall firewall add rule name=\""Block 203.0.113.14\"" dir=in action=block remoteip=203.0.113.14"", ""has_command"": true, ""command_hint"": ""netsh""}, ""stage1_parse_errors"": [], ""stage1_validation_issues"": []}",0
+INC_0285,security_failed_logins,"2026-02-01 09:18:43 WARN Multiple failed login attempts (20 in 10m) from 10.10.14.8 on WebLogin
+2026-02-01 09:30:43 INFO Mitigation applied: IP blocked","Engineer A: Seeing repeated authentication failures.
+Engineer B: Many failures targeting user svc_ci.
+Engineer A: Enabling rate limiting on auth.
+Engineer B: Alert cleared after mitigation.",ufw deny from 10.10.14.8,Brute-force login attempts from 10.10.14.8 targeting svc_ci via WebLogin.,Enabled rate limiting and blocked 10.10.14.8 to stop repeated failures.,Tune fail2ban thresholds and add SIEM alerting.,"{""services_affected"": [], ""hosts"": [], ""ips"": [""10.10.14.8""], ""timeline"": [{""time"": ""2026-02-01 09:18:43"", ""level"": ""WARN"", ""event"": ""WARN Multiple failed login attempts (20 in 10m) from 10.10.14.8 on WebLogin""}, {""time"": ""2026-02-01 09:30:43"", ""level"": ""INFO"", ""event"": ""INFO Mitigation applied: IP blocked""}], ""commands"": {""raw"": ""ufw deny from 10.10.14.8"", ""has_command"": true, ""command_hint"": ""ufw""}, ""stage1_parse_errors"": [], ""stage1_validation_issues"": []}",0
+INC_0058,cpu_timeout,"2026-02-01 13:47:06 ERROR PaymentService timeout on node-6
+2026-02-01 13:47:11 WARN CPU usage 92% on node-6
+2026-02-01 13:47:26 WARN Queue depth high for PaymentService
+2026-02-01 13:48:06 INFO Restart initiated for PaymentService
+2026-02-01 13:49:06 INFO Service restored
+2026-02-01 13:50:06 INFO Health check passed for PaymentService","Engineer A: PaymentService requests are failing.
+Engineer B: CPU is at 92% on node-6.
+Engineer A: Rolling restart now.
+Engineer B: Traffic is back to normal.",kubectl rollout restart deployment PaymentService,High CPU usage on node-6 caused PaymentService timeouts.,Restarted PaymentService deployment.,Enable auto-scaling and add CPU alerts.,"{""services_affected"": [""PaymentService""], ""hosts"": [""node-6""], ""ips"": [], ""timeline"": [{""time"": ""2026-02-01 13:47:06"", ""level"": ""ERROR"", ""event"": ""ERROR PaymentService timeout on node-6""}, {""time"": ""2026-02-01 13:47:11"", ""level"": ""WARN"", ""event"": ""WARN CPU usage 92% on node-6""}, {""time"": ""2026-02-01 13:47:26"", ""level"": ""WARN"", ""event"": ""WARN Queue depth high for PaymentService""}, {""time"": ""2026-02-01 13:48:06"", ""level"": ""INFO"", ""event"": ""INFO Restart initiated for PaymentService""}, {""time"": ""2026-02-01 13:49:06"", ""level"": ""INFO"", ""event"": ""INFO Service restored""}, {""time"": ""2026-02-01 13:50:06"", ""level"": ""INFO"", ""event"": ""INFO Health check passed for PaymentService""}], ""commands"": {""raw"": ""kubectl rollout restart deployment PaymentService"", ""has_command"": true, ""command_hint"": ""kubectl""}, ""stage1_parse_errors"": [], ""stage1_validation_issues"": []}",0
+INC_0042,cpu_timeout,"2026-02-01 09:14:04 ERROR InventoryService timeout on vm-7
+2026-02-01 09:14:09 WARN CPU usage 92% on vm-7
+2026-02-01 09:14:24 WARN Queue depth high for InventoryService
+2026-02-01 09:15:04 INFO Restart initiated for InventoryService
+2026-02-01 09:16:04 INFO Service restored","Engineer A: Users reporting errors on InventoryService.
+Engineer B: vm-7 looks overloaded (CPU 92%).
+Engineer A: Restarting the service.
+Engineer B: Service looks healthy.",kubectl rollout restart deployment InventoryService,High CPU usage on vm-7 caused InventoryService timeouts.,Restarted InventoryService deployment.,Add rate limiting and investigate traffic spikes.,"{""services_affected"": [""InventoryService""], ""hosts"": [""vm-7""], ""ips"": [], ""timeline"": [{""time"": ""2026-02-01 09:14:04"", ""level"": ""ERROR"", ""event"": ""ERROR InventoryService timeout on vm-7""}, {""time"": ""2026-02-01 09:14:09"", ""level"": ""WARN"", ""event"": ""WARN CPU usage 92% on vm-7""}, {""time"": ""2026-02-01 09:14:24"", ""level"": ""WARN"", ""event"": ""WARN Queue depth high for InventoryService""}, {""time"": ""2026-02-01 09:15:04"", ""level"": ""INFO"", ""event"": ""INFO Restart initiated for InventoryService""}, {""time"": ""2026-02-01 09:16:04"", ""level"": ""INFO"", ""event"": ""INFO Service restored""}], ""commands"": {""raw"": ""kubectl rollout restart deployment InventoryService"", ""has_command"": true, ""command_hint"": ""kubectl""}, ""stage1_parse_errors"": [], ""stage1_validation_issues"": []}",0
+INC_0298,security_failed_logins,"2026-02-01 14:34:14 WARN Multiple failed login attempts (50 in 5m) from 172.16.3.99 on WebLogin
+2026-02-01 14:39:14 ERROR Account locked for user svc_app
+2026-02-01 14:41:14 INFO Mitigation applied: IP blocked
+2026-02-01 14:44:14 INFO Failed login rate returned to baseline","Engineer A: Seeing repeated authentication failures.
+Engineer B: Source IP 172.16.3.99 is triggering failures.
+Engineer A: Locking the account temporarily.
+Engineer B: No more attempts observed.",iptables -A INPUT -s 172.16.3.99 -j DROP,Repeated failed authentication attempts from 172.16.3.99 indicated a brute-force attempt.,Applied firewall rule to drop traffic from 172.16.3.99 and monitored authentication logs.,Add bot protection/rate limits and alert on abnormal login patterns.,"{""services_affected"": [], ""hosts"": [], ""ips"": [""172.16.3.99""], ""timeline"": [{""time"": ""2026-02-01 14:34:14"", ""level"": ""WARN"", ""event"": ""WARN Multiple failed login attempts (50 in 5m) from 172.16.3.99 on WebLogin""}, {""time"": ""2026-02-01 14:39:14"", ""level"": ""ERROR"", ""event"": ""ERROR Account locked for user svc_app""}, {""time"": ""2026-02-01 14:41:14"", ""level"": ""INFO"", ""event"": ""INFO Mitigation applied: IP blocked""}, {""time"": ""2026-02-01 14:44:14"", ""level"": ""INFO"", ""event"": ""INFO Failed login rate returned to baseline""}], ""commands"": {""raw"": ""iptables -A INPUT -s 172.16.3.99 -j DROP"", ""has_command"": true, ""command_hint"": ""iptables""}, ""stage1_parse_errors"": [], ""stage1_validation_issues"": []}",0
+INC_0046,cpu_timeout,"2026-02-01 12:58:05 ERROR OrderService timeout on vm-7
+2026-02-01 12:58:10 WARN CPU usage 95% on vm-7
+2026-02-01 12:59:05 INFO Restart initiated for OrderService
+2026-02-01 13:00:05 INFO Service restored","Engineer A: OrderService requests are failing.
+Engineer B: vm-7 looks overloaded (CPU 95%).
+Engineer A: Restarting the service.
+Engineer B: Errors stopped.",kubectl rollout restart deployment OrderService,High CPU usage on vm-7 caused OrderService timeouts.,Restarted OrderService deployment.,Enable auto-scaling and add CPU alerts.,"{""services_affected"": [""OrderService""], ""hosts"": [""vm-7""], ""ips"": [], ""timeline"": [{""time"": ""2026-02-01 12:58:05"", ""level"": ""ERROR"", ""event"": ""ERROR OrderService timeout on vm-7""}, {""time"": ""2026-02-01 12:58:10"", ""level"": ""WARN"", ""event"": ""WARN CPU usage 95% on vm-7""}, {""time"": ""2026-02-01 12:59:05"", ""level"": ""INFO"", ""event"": ""INFO Restart initiated for OrderService""}, {""time"": ""2026-02-01 13:00:05"", ""level"": ""INFO"", ""event"": ""INFO Service restored""}], ""commands"": {""raw"": ""kubectl rollout restart deployment OrderService"", ""has_command"": true, ""command_hint"": ""kubectl""}, ""stage1_parse_errors"": [], ""stage1_validation_issues"": []}",0
+INC_0072,db_connection_failure,"2026-02-01 16:10:56 ERROR PaymentService failed to connect to database
+2026-02-01 16:11:06 WARN Connection refused on db-server-1
+2026-02-01 16:11:26 WARN DB health check failed on db-server-1
+2026-02-01 16:11:56 INFO Database service restarted
+2026-02-01 16:12:56 INFO Connection restored","Engineer A: Requests failing due to DB connectivity.
+Engineer B: db-server-1 not responding.
+Engineer A: Restarting database service.
+Engineer B: Errors cleared after restart.
+Engineer A: Monitoring connections for 2 minutes.",service postgresql restart,Database host db-server-1 stopped responding to connections.,Performed DB service restart (postgresql) and confirmed recovery.,Add failover strategy and improve DB uptime monitoring.,"{""services_affected"": [""PaymentService""], ""hosts"": [""db-server-1""], ""ips"": [], ""timeline"": [{""time"": ""2026-02-01 16:10:56"", ""level"": ""ERROR"", ""event"": ""ERROR PaymentService failed to connect to database""}, {""time"": ""2026-02-01 16:11:06"", ""level"": ""WARN"", ""event"": ""WARN Connection refused on db-server-1""}, {""time"": ""2026-02-01 16:11:26"", ""level"": ""WARN"", ""event"": ""WARN DB health check failed on db-server-1""}, {""time"": ""2026-02-01 16:11:56"", ""level"": ""INFO"", ""event"": ""INFO Database service restarted""}, {""time"": ""2026-02-01 16:12:56"", ""level"": ""INFO"", ""event"": ""INFO Connection restored""}], ""commands"": {""raw"": ""service postgresql restart"", ""has_command"": false, ""command_hint"": null}, ""stage1_parse_errors"": [], ""stage1_validation_issues"": []}",0
+INC_0216,network_latency_timeout,"2026-02-01 15:15:02 ERROR API timeout in OrderService
+2026-02-01 15:15:12 WARN Network latency 450ms
+2026-02-01 15:16:02 INFO Network stabilized
+2026-02-01 15:17:02 INFO Latency back to normal for OrderService","Engineer A: Requests are timing out intermittently.
+Engineer B: Packet loss observed on the link.
+Engineer A: Investigating recent network changes.
+Engineer B: Latency normalized.",,Network latency spike (~450ms) caused request timeouts in OrderService.,Confirmed recovery once latency returned to normal levels.,Add end-to-end tracing and network performance alerts.,"{""services_affected"": [""OrderService""], ""hosts"": [], ""ips"": [], ""timeline"": [{""time"": ""2026-02-01 15:15:02"", ""level"": ""ERROR"", ""event"": ""ERROR API timeout in OrderService""}, {""time"": ""2026-02-01 15:15:12"", ""level"": ""WARN"", ""event"": ""WARN Network latency 450ms""}, {""time"": ""2026-02-01 15:16:02"", ""level"": ""INFO"", ""event"": ""INFO Network stabilized""}, {""time"": ""2026-02-01 15:17:02"", ""level"": ""INFO"", ""event"": ""INFO Latency back to normal for OrderService""}], ""commands"": {""raw"": """", ""has_command"": false, ""command_hint"": null}, ""stage1_parse_errors"": [], ""stage1_validation_issues"": []}",0
+INC_0147,disk_full,"2026-02-01 10:50:46 ERROR Disk space 100% on vm-9
+2026-02-01 10:51:06 WARN Write failure in ETLWorker
+2026-02-01 10:52:46 INFO Old logs cleared
+2026-02-01 10:53:46 INFO Disk usage reduced to 60%
+2026-02-01 10:54:46 INFO ETLWorker health check passed","Engineer A: Disk full on vm-9.
+Engineer B: Checking largest directories now.
+Engineer A: Rotating logs and cleaning up.
+Engineer B: Disk usage dropped; service recovering.
+Engineer A: Verifying disk usage and service health.",rm -rf /var/log/old_logs/*,Disk exhaustion on vm-9 caused write failures for ETLWorker.,Cleared old logs and temporary files to free disk space.,"Alert earlier (e.g., 80% disk) and review capacity.","{""services_affected"": [], ""hosts"": [""vm-9""], ""ips"": [], ""timeline"": [{""time"": ""2026-02-01 10:50:46"", ""level"": ""ERROR"", ""event"": ""ERROR Disk space 100% on vm-9""}, {""time"": ""2026-02-01 10:51:06"", ""level"": ""WARN"", ""event"": ""WARN Write failure in ETLWorker""}, {""time"": ""2026-02-01 10:52:46"", ""level"": ""INFO"", ""event"": ""INFO Old logs cleared""}, {""time"": ""2026-02-01 10:53:46"", ""level"": ""INFO"", ""event"": ""INFO Disk usage reduced to 60%""}, {""time"": ""2026-02-01 10:54:46"", ""level"": ""INFO"", ""event"": ""INFO ETLWorker health check passed""}], ""commands"": {""raw"": ""rm -rf /var/log/old_logs/*"", ""has_command"": true, ""command_hint"": ""rm""}, ""stage1_parse_errors"": [], ""stage1_validation_issues"": []}",0
+INC_0167,disk_full,"2026-02-01 12:15:29 ERROR Disk space 100% on vm-2
+2026-02-01 12:15:49 WARN Write failure in ImageProcessor
+2026-02-01 12:16:04 WARN No space left on device on vm-2
+2026-02-01 12:16:29 INFO Running cleanup on vm-2
+2026-02-01 12:17:29 INFO Old logs cleared
+2026-02-01 12:18:29 INFO Disk usage reduced to 55%","Engineer A: Storage is at 100% on vm-2.
+Engineer B: Checking largest directories now.
+Engineer A: Rotating logs and cleaning up.
+Engineer B: Space freed; disk back to normal.
+Engineer A: Verifying disk usage and service health.",find /var/log -type f -name '*.log' -mtime +7 -delete ; journalctl --vacuum-time=7d,"Disk usage reached 100% on vm-2, causing failures in ImageProcessor.",Freed disk space by removing old data and confirmed stability.,Set up log retention limits and monitoring alerts.,"{""services_affected"": [], ""hosts"": [""vm-2""], ""ips"": [], ""timeline"": [{""time"": ""2026-02-01 12:15:29"", ""level"": ""ERROR"", ""event"": ""ERROR Disk space 100% on vm-2""}, {""time"": ""2026-02-01 12:15:49"", ""level"": ""WARN"", ""event"": ""WARN Write failure in ImageProcessor""}, {""time"": ""2026-02-01 12:16:04"", ""level"": ""WARN"", ""event"": ""WARN No space left on device on vm-2""}, {""time"": ""2026-02-01 12:16:29"", ""level"": ""INFO"", ""event"": ""INFO Running cleanup on vm-2""}, {""time"": ""2026-02-01 12:17:29"", ""level"": ""INFO"", ""event"": ""INFO Old logs cleared""}, {""time"": ""2026-02-01 12:18:29"", ""level"": ""INFO"", ""event"": ""INFO Disk usage reduced to 55%""}], ""commands"": {""raw"": ""find /var/log -type f -name '*.log' -mtime +7 -delete ; journalctl --vacuum-time=7d"", ""has_command"": true, ""command_hint"": ""find""}, ""stage1_parse_errors"": [], ""stage1_validation_issues"": []}",0
+INC_0151,disk_full,"2026-02-01 12:11:04 ERROR Disk space 100% on vm-9
+2026-02-01 12:11:24 WARN Write failure in ImageProcessor
+2026-02-01 12:11:39 WARN No space left on device on vm-9
+2026-02-01 12:13:04 INFO Old logs cleared
+2026-02-01 12:14:04 INFO Disk usage reduced to 60%
+2026-02-01 12:15:04 INFO ImageProcessor health check passed","Engineer A: Disk usage critical on vm-9.
+Engineer B: Looking for big files and old archives.
+Engineer A: Clearing old logs.
+Engineer B: Space freed; disk back to normal.
+Engineer A: Verifying disk usage and service health.",journalctl --vacuum-time=7d ; du -sh /var/* | sort -h,Temporary storage exhaustion on vm-9 led to write errors in ImageProcessor.,Cleared old logs and temporary files to free disk space.,Add automated cleanup job and enforce retention limits.,"{""services_affected"": [], ""hosts"": [""vm-9""], ""ips"": [], ""timeline"": [{""time"": ""2026-02-01 12:11:04"", ""level"": ""ERROR"", ""event"": ""ERROR Disk space 100% on vm-9""}, {""time"": ""2026-02-01 12:11:24"", ""level"": ""WARN"", ""event"": ""WARN Write failure in ImageProcessor""}, {""time"": ""2026-02-01 12:11:39"", ""level"": ""WARN"", ""event"": ""WARN No space left on device on vm-9""}, {""time"": ""2026-02-01 12:13:04"", ""level"": ""INFO"", ""event"": ""INFO Old logs cleared""}, {""time"": ""2026-02-01 12:14:04"", ""level"": ""INFO"", ""event"": ""INFO Disk usage reduced to 60%""}, {""time"": ""2026-02-01 12:15:04"", ""level"": ""INFO"", ""event"": ""INFO ImageProcessor health check passed""}], ""commands"": {""raw"": ""journalctl --vacuum-time=7d ; du -sh /var/* | sort -h"", ""has_command"": true, ""command_hint"": ""journalctl""}, ""stage1_parse_errors"": [], ""stage1_validation_issues"": []}",0
+INC_0119,db_connection_failure,"2026-02-01 13:10:41 ERROR AuthService failed to connect to database
+2026-02-01 13:10:51 WARN Connection refused on db-server-2
+2026-02-01 13:11:11 WARN DB health check failed on db-server-2
+2026-02-01 13:11:41 INFO Database service restarted
+2026-02-01 13:12:41 INFO Connection restored","Engineer A: App cannot connect to DB.
+Engineer B: db-server-2 appears down/unreachable.
+Engineer A: Restarting DB now.
+Engineer B: App is connecting again.",systemctl restart postgresql,Database service on db-server-2 was unavailable (connection refused).,Performed DB service restart (postgresql) and confirmed recovery.,Enable DB monitoring/alerts and implement client retries.,"{""services_affected"": [""AuthService""], ""hosts"": [""db-server-2""], ""ips"": [], ""timeline"": [{""time"": ""2026-02-01 13:10:41"", ""level"": ""ERROR"", ""event"": ""ERROR AuthService failed to connect to database""}, {""time"": ""2026-02-01 13:10:51"", ""level"": ""WARN"", ""event"": ""WARN Connection refused on db-server-2""}, {""time"": ""2026-02-01 13:11:11"", ""level"": ""WARN"", ""event"": ""WARN DB health check failed on db-server-2""}, {""time"": ""2026-02-01 13:11:41"", ""level"": ""INFO"", ""event"": ""INFO Database service restarted""}, {""time"": ""2026-02-01 13:12:41"", ""level"": ""INFO"", ""event"": ""INFO Connection restored""}], ""commands"": {""raw"": ""systemctl restart postgresql"", ""has_command"": true, ""command_hint"": ""systemctl""}, ""stage1_parse_errors"": [], ""stage1_validation_issues"": []}",0
+INC_0062,db_connection_failure,"2026-02-01 12:17:15 ERROR PaymentService failed to connect to database
+2026-02-01 12:17:25 WARN Connection refused on db-server-1
+2026-02-01 12:18:15 INFO Database service restarted
+2026-02-01 12:19:15 INFO Connection restored","Engineer A: Seeing DB connection failures.
+Engineer B: db-server-1 appears down/unreachable.
+Engineer A: Restarting DB now.
+Engineer B: Connection restored.",service postgresql restart,DB service disruption on db-server-1 led to application errors.,Restarted postgresql and monitored until stable.,Add circuit breaker + retries in the application.,"{""services_affected"": [""PaymentService""], ""hosts"": [""db-server-1""], ""ips"": [], ""timeline"": [{""time"": ""2026-02-01 12:17:15"", ""level"": ""ERROR"", ""event"": ""ERROR PaymentService failed to connect to database""}, {""time"": ""2026-02-01 12:17:25"", ""level"": ""WARN"", ""event"": ""WARN Connection refused on db-server-1""}, {""time"": ""2026-02-01 12:18:15"", ""level"": ""INFO"", ""event"": ""INFO Database service restarted""}, {""time"": ""2026-02-01 12:19:15"", ""level"": ""INFO"", ""event"": ""INFO Connection restored""}], ""commands"": {""raw"": ""service postgresql restart"", ""has_command"": false, ""command_hint"": null}, ""stage1_parse_errors"": [], ""stage1_validation_issues"": []}",0
+INC_0127,disk_full,"2026-02-01 10:43:58 ERROR Disk space 100% on vm-2
+2026-02-01 10:44:18 WARN Write failure in LoggingService
+2026-02-01 10:44:58 INFO Running cleanup on vm-2
+2026-02-01 10:45:58 INFO Old logs cleared
+2026-02-01 10:46:58 INFO Disk usage reduced to 65%","Engineer A: No space left on device on vm-2.
+Engineer B: Investigating /var/log and temp files.
+Engineer A: Rotating logs and cleaning up.
+Engineer B: System stable after cleanup.
+Engineer A: Verifying disk usage and service health.",rm -rf /var/log/old_logs/*,"Disk usage reached 100% on vm-2, causing failures in LoggingService.",Cleared old logs and temporary files to free disk space.,Configure log rotation and disk usage alerts.,"{""services_affected"": [""LoggingService""], ""hosts"": [""vm-2""], ""ips"": [], ""timeline"": [{""time"": ""2026-02-01 10:43:58"", ""level"": ""ERROR"", ""event"": ""ERROR Disk space 100% on vm-2""}, {""time"": ""2026-02-01 10:44:18"", ""level"": ""WARN"", ""event"": ""WARN Write failure in LoggingService""}, {""time"": ""2026-02-01 10:44:58"", ""level"": ""INFO"", ""event"": ""INFO Running cleanup on vm-2""}, {""time"": ""2026-02-01 10:45:58"", ""level"": ""INFO"", ""event"": ""INFO Old logs cleared""}, {""time"": ""2026-02-01 10:46:58"", ""level"": ""INFO"", ""event"": ""INFO Disk usage reduced to 65%""}], ""commands"": {""raw"": ""rm -rf /var/log/old_logs/*"", ""has_command"": true, ""command_hint"": ""rm""}, ""stage1_parse_errors"": [], ""stage1_validation_issues"": []}",0

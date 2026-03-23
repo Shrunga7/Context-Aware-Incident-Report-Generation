@@ -1,0 +1,1471 @@
+input_text,target_text
+"Incident Type: network_latency_timeout
+Services: OrderService
+Hosts: None
+IPs: None
+Commands: None","Root Cause: Network latency spike (~300ms) caused request timeouts in OrderService.
+Resolution: Confirmed recovery once latency returned to normal levels.
+Preventive Action: Add end-to-end tracing and network performance alerts."
+"Incident Type: security_failed_logins
+Services: None
+Hosts: None
+IPs: 203.0.113.14
+Commands: None","Root Cause: Brute-force login attempts from 203.0.113.14 targeting svc_app via WebLogin.
+Resolution: Blocked 203.0.113.14 at the firewall and locked svc_app temporarily.
+Preventive Action: Configure account lockout policies and MFA for privileged accounts."
+"Incident Type: network_latency_timeout
+Services: Gateway
+Hosts: None
+IPs: None
+Commands: None","Root Cause: Upstream network instability led to timeouts observed in Gateway.
+Resolution: Observed stabilization after investigating network metrics and dependencies.
+Preventive Action: Implement retry/backoff and alert on upstream latency spikes."
+"Incident Type: db_connection_failure
+Services: PaymentService
+Hosts: db-server-1
+IPs: None
+Commands: None","Root Cause: Database service on db-server-1 was unavailable (connection refused).
+Resolution: Restarted mysql service to restore connectivity.
+Preventive Action: Add DB health checks and connection retry/backoff."
+"Incident Type: security_failed_logins
+Services: None
+Hosts: None
+IPs: 203.0.113.14
+Commands: None","Root Cause: Brute-force login attempts from 203.0.113.14 targeting root via VPN.
+Resolution: Temporarily blocked 203.0.113.14, forced password reset for root, and monitored alerts.
+Preventive Action: Configure account lockout policies and MFA for privileged accounts."
+"Incident Type: db_connection_failure
+Services: OrderService
+Hosts: db-server-2
+IPs: None
+Commands: None","Root Cause: Database host db-server-2 stopped responding to connections.
+Resolution: Restarted the database service (postgresql) and verified connections.
+Preventive Action: Add circuit breaker + retries in the application."
+"Incident Type: security_failed_logins
+Services: None
+Hosts: None
+IPs: 203.0.113.14
+Commands: None","Root Cause: Suspicious login activity from 203.0.113.14 triggered account lockouts for root.
+Resolution: Blocked 203.0.113.14 at the firewall and locked root temporarily.
+Preventive Action: Add bot protection/rate limits and alert on abnormal login patterns."
+"Incident Type: disk_full
+Services: None
+Hosts: vm-9
+IPs: None
+Commands: None","Root Cause: Disk exhaustion on vm-9 caused write failures for ImageProcessor.
+Resolution: Freed disk space by removing old data and confirmed stability.
+Preventive Action: Configure log rotation and disk usage alerts."
+"Incident Type: cpu_timeout
+Services: SearchService
+Hosts: vm-9
+IPs: None
+Commands: None","Root Cause: High CPU usage on vm-9 caused SearchService timeouts.
+Resolution: Restarted SearchService deployment.
+Preventive Action: Configure HPA and set CPU thresholds."
+"Incident Type: cpu_timeout
+Services: UserService
+Hosts: node-2
+IPs: None
+Commands: None","Root Cause: High CPU usage on node-2 caused UserService timeouts.
+Resolution: Restarted UserService deployment.
+Preventive Action: Tune resource limits/requests and add alerts."
+"Incident Type: db_connection_failure
+Services: OrderService
+Hosts: db-server-1
+IPs: None
+Commands: None","Root Cause: DB service disruption on db-server-1 led to application errors.
+Resolution: Restarted postgresql service to restore connectivity.
+Preventive Action: Add failover strategy and improve DB uptime monitoring."
+"Incident Type: cpu_timeout
+Services: InventoryService
+Hosts: node-4
+IPs: None
+Commands: None","Root Cause: High CPU usage on node-4 caused InventoryService timeouts.
+Resolution: Restarted InventoryService deployment.
+Preventive Action: Investigate load spike and add scaling policy."
+"Incident Type: db_connection_failure
+Services: PaymentService
+Hosts: db-server-2
+IPs: None
+Commands: None","Root Cause: Database service on db-server-2 was unavailable (connection refused).
+Resolution: Restarted postgresql service to restore connectivity.
+Preventive Action: Set up DB replication/failover and monitor connection errors."
+"Incident Type: security_failed_logins
+Services: None
+Hosts: None
+IPs: 203.0.113.14
+Commands: None","Root Cause: High-rate failed logins from 203.0.113.14 caused security alerts on WebLogin.
+Resolution: Enabled rate limiting and blocked 203.0.113.14 to stop repeated failures.
+Preventive Action: Add bot protection/rate limits and alert on abnormal login patterns."
+"Incident Type: cpu_timeout
+Services: UserService
+Hosts: vm-7
+IPs: None
+Commands: None","Root Cause: High CPU usage on vm-7 caused UserService timeouts.
+Resolution: Restarted UserService deployment.
+Preventive Action: Add rate limiting and investigate traffic spikes."
+"Incident Type: disk_full
+Services: None
+Hosts: node-6
+IPs: None
+Commands: None","Root Cause: Uncontrolled log growth filled disk on node-6, impacting ETLWorker.
+Resolution: Cleared old logs and temporary files to free disk space.
+Preventive Action: Alert earlier (e.g., 80% disk) and review capacity."
+"Incident Type: disk_full
+Services: OrderService
+Hosts: node-4
+IPs: None
+Commands: None","Root Cause: Disk exhaustion on node-4 caused write failures for OrderService.
+Resolution: Cleared old logs and temporary files to free disk space.
+Preventive Action: Configure log rotation and disk usage alerts."
+"Incident Type: db_connection_failure
+Services: AuthService
+Hosts: db-server-2
+IPs: None
+Commands: None","Root Cause: Database host db-server-2 stopped responding to connections.
+Resolution: Performed DB service restart (mysql) and confirmed recovery.
+Preventive Action: Add failover strategy and improve DB uptime monitoring."
+"Incident Type: security_failed_logins
+Services: None
+Hosts: None
+IPs: 192.168.1.25
+Commands: None","Root Cause: Repeated failed authentication attempts from 192.168.1.25 indicated a brute-force attempt.
+Resolution: Blocked 192.168.1.25 at the firewall and locked admin temporarily.
+Preventive Action: Require MFA, reduce exposed auth surface, and monitor failed login spikes."
+"Incident Type: security_failed_logins
+Services: None
+Hosts: None
+IPs: 10.10.14.8
+Commands: None","Root Cause: Repeated failed authentication attempts from 10.10.14.8 indicated a brute-force attempt.
+Resolution: Enabled rate limiting and blocked 10.10.14.8 to stop repeated failures.
+Preventive Action: Configure account lockout policies and MFA for privileged accounts."
+"Incident Type: security_failed_logins
+Services: None
+Hosts: None
+IPs: 192.168.1.25
+Commands: None","Root Cause: High-rate failed logins from 192.168.1.25 caused security alerts on WebLogin.
+Resolution: Enabled rate limiting and blocked 192.168.1.25 to stop repeated failures.
+Preventive Action: Enable MFA and add rate-limiting for authentication."
+"Incident Type: db_connection_failure
+Services: AuthService
+Hosts: db-server-2
+IPs: None
+Commands: None","Root Cause: Database host db-server-2 stopped responding to connections.
+Resolution: Restarted the database service (postgresql) and verified connections.
+Preventive Action: Configure connection pooling with retries and alert on DB errors."
+"Incident Type: network_latency_timeout
+Services: SearchService
+Hosts: None
+IPs: None
+Commands: None","Root Cause: Network latency spike (~600ms) caused request timeouts in SearchService.
+Resolution: Validated network recovery and continued monitoring until stable.
+Preventive Action: Add upstream dependency SLO alerts and tracing."
+"Incident Type: db_connection_failure
+Services: OrderService
+Hosts: db-server-2
+IPs: None
+Commands: None","Root Cause: DB service disruption on db-server-2 led to application errors.
+Resolution: Restarted the database service (postgresql) and verified connections.
+Preventive Action: Configure connection pooling with retries and alert on DB errors."
+"Incident Type: disk_full
+Services: None
+Hosts: node-6
+IPs: None
+Commands: None","Root Cause: Temporary storage exhaustion on node-6 led to write errors in ETLWorker.
+Resolution: Freed disk space by removing old data and confirmed stability.
+Preventive Action: Apply log rotation policies and review storage capacity planning."
+"Incident Type: network_latency_timeout
+Services: Gateway
+Hosts: None
+IPs: None
+Commands: None","Root Cause: Upstream network instability led to timeouts observed in Gateway.
+Resolution: Monitored the system until network conditions stabilized.
+Preventive Action: Add latency SLO alerts and investigate network bottlenecks."
+"Incident Type: network_latency_timeout
+Services: OrderService
+Hosts: None
+IPs: None
+Commands: None","Root Cause: Upstream network instability led to timeouts observed in OrderService.
+Resolution: Confirmed recovery once latency returned to normal levels.
+Preventive Action: Add end-to-end tracing and network performance alerts."
+"Incident Type: disk_full
+Services: OrderService
+Hosts: vm-2
+IPs: None
+Commands: None","Root Cause: Temporary storage exhaustion on vm-2 led to write errors in OrderService.
+Resolution: Freed disk space by removing old data and confirmed stability.
+Preventive Action: Add automated cleanup job and enforce retention limits."
+"Incident Type: db_connection_failure
+Services: PaymentService
+Hosts: db-server-2
+IPs: None
+Commands: None","Root Cause: DB service disruption on db-server-2 led to application errors.
+Resolution: Restarted mysql and monitored until stable.
+Preventive Action: Configure connection pooling with retries and alert on DB errors."
+"Incident Type: cpu_timeout
+Services: AuthService
+Hosts: vm-9
+IPs: None
+Commands: None","Root Cause: High CPU usage on vm-9 caused AuthService timeouts.
+Resolution: Restarted AuthService deployment.
+Preventive Action: Tune resource limits/requests and add alerts."
+"Incident Type: security_failed_logins
+Services: None
+Hosts: None
+IPs: 172.16.3.99
+Commands: None","Root Cause: High-rate failed logins from 172.16.3.99 caused security alerts on RDP.
+Resolution: Blocked 172.16.3.99 at the firewall and locked svc_ci temporarily.
+Preventive Action: Restrict admin access by IP allowlist and enable MFA."
+"Incident Type: disk_full
+Services: OrderService
+Hosts: node-6
+IPs: None
+Commands: None","Root Cause: Temporary storage exhaustion on node-6 led to write errors in OrderService.
+Resolution: Freed disk space by removing old data and confirmed stability.
+Preventive Action: Configure log rotation and disk usage alerts."
+"Incident Type: disk_full
+Services: OrderService
+Hosts: node-4
+IPs: None
+Commands: None","Root Cause: Uncontrolled log growth filled disk on node-4, impacting OrderService.
+Resolution: Cleared old logs and temporary files to free disk space.
+Preventive Action: Implement automated cleanup and disk threshold alerting."
+"Incident Type: network_latency_timeout
+Services: SearchService
+Hosts: None
+IPs: None
+Commands: None","Root Cause: Network latency spike (~300ms) caused request timeouts in SearchService.
+Resolution: Monitored the system until network conditions stabilized.
+Preventive Action: Set up packet loss monitoring and alert thresholds."
+"Incident Type: network_latency_timeout
+Services: Gateway, SearchService
+Hosts: None
+IPs: None
+Commands: None","Root Cause: Transient network degradation (latency ~450ms) impacted SearchService availability.
+Resolution: Monitored the system until network conditions stabilized.
+Preventive Action: Implement client-side timeouts + exponential backoff."
+"Incident Type: disk_full
+Services: None
+Hosts: node-6
+IPs: None
+Commands: None","Root Cause: Uncontrolled log growth filled disk on node-6, impacting ImageProcessor.
+Resolution: Cleaned up logs and validated ImageProcessor resumed normal writes.
+Preventive Action: Set up log retention limits and monitoring alerts."
+"Incident Type: security_failed_logins
+Services: None
+Hosts: None
+IPs: 198.51.100.22
+Commands: None","Root Cause: Suspicious login activity from 198.51.100.22 triggered account lockouts for svc_ci.
+Resolution: Blocked 198.51.100.22 at the firewall and locked svc_ci temporarily.
+Preventive Action: Enable MFA and add rate-limiting for authentication."
+"Incident Type: cpu_timeout
+Services: Gateway
+Hosts: node-3
+IPs: None
+Commands: None","Root Cause: High CPU usage on node-3 caused Gateway timeouts.
+Resolution: Restarted Gateway deployment.
+Preventive Action: Investigate load spike and add scaling policy."
+"Incident Type: cpu_timeout
+Services: AuthService
+Hosts: node-4
+IPs: None
+Commands: None","Root Cause: High CPU usage on node-4 caused AuthService timeouts.
+Resolution: Restarted AuthService deployment.
+Preventive Action: Add rate limiting and investigate traffic spikes."
+"Incident Type: disk_full
+Services: LoggingService
+Hosts: vm-9
+IPs: None
+Commands: None","Root Cause: Uncontrolled log growth filled disk on vm-9, impacting LoggingService.
+Resolution: Cleared old logs and temporary files to free disk space.
+Preventive Action: Set up log retention limits and monitoring alerts."
+"Incident Type: db_connection_failure
+Services: PaymentService
+Hosts: db-server-1
+IPs: None
+Commands: None","Root Cause: Database service on db-server-1 was unavailable (connection refused).
+Resolution: Performed DB service restart (mysql) and confirmed recovery.
+Preventive Action: Configure connection pooling with retries and alert on DB errors."
+"Incident Type: disk_full
+Services: OrderService
+Hosts: vm-2
+IPs: None
+Commands: None","Root Cause: Disk usage reached 100% on vm-2, causing failures in OrderService.
+Resolution: Removed large/old log files and verified disk recovery.
+Preventive Action: Apply log rotation policies and review storage capacity planning."
+"Incident Type: security_failed_logins
+Services: None
+Hosts: None
+IPs: 198.51.100.22
+Commands: None","Root Cause: Suspicious login activity from 198.51.100.22 triggered account lockouts for root.
+Resolution: Applied firewall rule to drop traffic from 198.51.100.22 and monitored authentication logs.
+Preventive Action: Enable MFA and add rate-limiting for authentication."
+"Incident Type: disk_full
+Services: LoggingService
+Hosts: node-4
+IPs: None
+Commands: None","Root Cause: Uncontrolled log growth filled disk on node-4, impacting LoggingService.
+Resolution: Freed disk space by removing old data and confirmed stability.
+Preventive Action: Implement automated cleanup and disk threshold alerting."
+"Incident Type: security_failed_logins
+Services: None
+Hosts: None
+IPs: 203.0.113.14
+Commands: None","Root Cause: Suspicious login activity from 203.0.113.14 triggered account lockouts for admin.
+Resolution: Blocked 203.0.113.14 at the firewall and locked admin temporarily.
+Preventive Action: Enable MFA and add rate-limiting for authentication."
+"Incident Type: db_connection_failure
+Services: PaymentService
+Hosts: db-server-1
+IPs: None
+Commands: None","Root Cause: Database service on db-server-1 was unavailable (connection refused).
+Resolution: Restarted mysql and monitored until stable.
+Preventive Action: Add circuit breaker + retries in the application."
+"Incident Type: security_failed_logins
+Services: None
+Hosts: None
+IPs: 192.168.1.25
+Commands: None","Root Cause: Brute-force login attempts from 192.168.1.25 targeting svc_app via VPN.
+Resolution: Enabled rate limiting and blocked 192.168.1.25 to stop repeated failures.
+Preventive Action: Configure account lockout policies and MFA for privileged accounts."
+"Incident Type: disk_full
+Services: OrderService
+Hosts: vm-2
+IPs: None
+Commands: None","Root Cause: Uncontrolled log growth filled disk on vm-2, impacting OrderService.
+Resolution: Cleared old logs and temporary files to free disk space.
+Preventive Action: Alert earlier (e.g., 80% disk) and review capacity."
+"Incident Type: cpu_timeout
+Services: Gateway
+Hosts: vm-2
+IPs: None
+Commands: None","Root Cause: High CPU usage on vm-2 caused Gateway timeouts.
+Resolution: Restarted Gateway deployment.
+Preventive Action: Investigate load spike and add scaling policy."
+"Incident Type: db_connection_failure
+Services: AuthService
+Hosts: db-server-2
+IPs: None
+Commands: None","Root Cause: Database host db-server-2 stopped responding to connections.
+Resolution: Restarted the database service (postgresql) and verified connections.
+Preventive Action: Add failover strategy and improve DB uptime monitoring."
+"Incident Type: db_connection_failure
+Services: AuthService
+Hosts: db-server-2
+IPs: None
+Commands: None","Root Cause: Temporary DB outage on db-server-2 caused connection failures.
+Resolution: Performed DB service restart (mysql) and confirmed recovery.
+Preventive Action: Configure connection pooling with retries and alert on DB errors."
+"Incident Type: cpu_timeout
+Services: SearchService
+Hosts: node-3
+IPs: None
+Commands: None","Root Cause: High CPU usage on node-3 caused SearchService timeouts.
+Resolution: Restarted SearchService deployment.
+Preventive Action: Enable auto-scaling and add CPU alerts."
+"Incident Type: security_failed_logins
+Services: None
+Hosts: None
+IPs: 172.16.3.99
+Commands: None","Root Cause: Repeated failed authentication attempts from 172.16.3.99 indicated a brute-force attempt.
+Resolution: Enabled rate limiting and blocked 172.16.3.99 to stop repeated failures.
+Preventive Action: Enable MFA and add rate-limiting for authentication."
+"Incident Type: cpu_timeout
+Services: PaymentService
+Hosts: node-4
+IPs: None
+Commands: None","Root Cause: High CPU usage on node-4 caused PaymentService timeouts.
+Resolution: Restarted PaymentService deployment.
+Preventive Action: Add rate limiting and investigate traffic spikes."
+"Incident Type: cpu_timeout
+Services: Gateway
+Hosts: node-6
+IPs: None
+Commands: None","Root Cause: High CPU usage on node-6 caused Gateway timeouts.
+Resolution: Restarted Gateway deployment.
+Preventive Action: Configure HPA and set CPU thresholds."
+"Incident Type: cpu_timeout
+Services: PaymentService
+Hosts: node-2
+IPs: None
+Commands: None","Root Cause: High CPU usage on node-2 caused PaymentService timeouts.
+Resolution: Restarted PaymentService deployment.
+Preventive Action: Tune resource limits/requests and add alerts."
+"Incident Type: db_connection_failure
+Services: OrderService
+Hosts: db-server-2
+IPs: None
+Commands: None","Root Cause: Temporary DB outage on db-server-2 caused connection failures.
+Resolution: Restarted the database service (mysql) and verified connections.
+Preventive Action: Add circuit breaker + retries in the application."
+"Incident Type: db_connection_failure
+Services: AuthService
+Hosts: db-server-1
+IPs: None
+Commands: None","Root Cause: DB service disruption on db-server-1 led to application errors.
+Resolution: Restarted the database service (mysql) and verified connections.
+Preventive Action: Add DB health checks and connection retry/backoff."
+"Incident Type: network_latency_timeout
+Services: Gateway, OrderService
+Hosts: None
+IPs: None
+Commands: None","Root Cause: Increased network latency and/or packet loss caused timeouts for OrderService.
+Resolution: Confirmed recovery once latency returned to normal levels.
+Preventive Action: Add end-to-end tracing and network performance alerts."
+"Incident Type: disk_full
+Services: None
+Hosts: vm-9
+IPs: None
+Commands: None","Root Cause: Temporary storage exhaustion on vm-9 led to write errors in ImageProcessor.
+Resolution: Removed large/old log files and verified disk recovery.
+Preventive Action: Apply log rotation policies and review storage capacity planning."
+"Incident Type: db_connection_failure
+Services: PaymentService
+Hosts: db-server-1
+IPs: None
+Commands: None","Root Cause: DB service disruption on db-server-1 led to application errors.
+Resolution: Restarted postgresql service to restore connectivity.
+Preventive Action: Set up DB replication/failover and monitor connection errors."
+"Incident Type: disk_full
+Services: OrderService
+Hosts: vm-2
+IPs: None
+Commands: None","Root Cause: Disk usage reached 100% on vm-2, causing failures in OrderService.
+Resolution: Cleared old logs and temporary files to free disk space.
+Preventive Action: Implement automated cleanup and disk threshold alerting."
+"Incident Type: security_failed_logins
+Services: None
+Hosts: None
+IPs: 203.0.113.14
+Commands: None","Root Cause: Suspicious login activity from 203.0.113.14 triggered account lockouts for ops_user.
+Resolution: Applied firewall rule to drop traffic from 203.0.113.14 and monitored authentication logs.
+Preventive Action: Configure account lockout policies and MFA for privileged accounts."
+"Incident Type: network_latency_timeout
+Services: SearchService
+Hosts: None
+IPs: None
+Commands: None","Root Cause: Network latency spike (~180ms) caused request timeouts in SearchService.
+Resolution: Monitored the system until network conditions stabilized.
+Preventive Action: Add end-to-end tracing and network performance alerts."
+"Incident Type: disk_full
+Services: LoggingService
+Hosts: vm-2
+IPs: None
+Commands: None","Root Cause: Uncontrolled log growth filled disk on vm-2, impacting LoggingService.
+Resolution: Freed disk space by removing old data and confirmed stability.
+Preventive Action: Add automated cleanup job and enforce retention limits."
+"Incident Type: network_latency_timeout
+Services: APIService
+Hosts: None
+IPs: None
+Commands: None","Root Cause: Increased network latency and/or packet loss caused timeouts for APIService.
+Resolution: Monitored the system until network conditions stabilized.
+Preventive Action: Set up packet loss monitoring and alert thresholds."
+"Incident Type: cpu_timeout
+Services: Gateway
+Hosts: vm-7
+IPs: None
+Commands: None","Root Cause: High CPU usage on vm-7 caused Gateway timeouts.
+Resolution: Restarted Gateway deployment.
+Preventive Action: Configure HPA and set CPU thresholds."
+"Incident Type: network_latency_timeout
+Services: OrderService
+Hosts: None
+IPs: None
+Commands: None","Root Cause: Upstream network instability led to timeouts observed in OrderService.
+Resolution: Observed stabilization after investigating network metrics and dependencies.
+Preventive Action: Implement client-side timeouts + exponential backoff."
+"Incident Type: network_latency_timeout
+Services: APIService
+Hosts: None
+IPs: None
+Commands: None","Root Cause: Transient network degradation (latency ~250ms) impacted APIService availability.
+Resolution: Validated network recovery and continued monitoring until stable.
+Preventive Action: Set up packet loss monitoring and alert thresholds."
+"Incident Type: disk_full
+Services: None
+Hosts: node-6
+IPs: None
+Commands: None","Root Cause: Disk exhaustion on node-6 caused write failures for ETLWorker.
+Resolution: Cleaned up logs and validated ETLWorker resumed normal writes.
+Preventive Action: Apply log rotation policies and review storage capacity planning."
+"Incident Type: disk_full
+Services: LoggingService
+Hosts: node-6
+IPs: None
+Commands: None","Root Cause: Uncontrolled log growth filled disk on node-6, impacting LoggingService.
+Resolution: Cleared old logs and temporary files to free disk space.
+Preventive Action: Apply log rotation policies and review storage capacity planning."
+"Incident Type: cpu_timeout
+Services: SearchService
+Hosts: node-2
+IPs: None
+Commands: None","Root Cause: High CPU usage on node-2 caused SearchService timeouts.
+Resolution: Restarted SearchService deployment.
+Preventive Action: Enable auto-scaling and add CPU alerts."
+"Incident Type: db_connection_failure
+Services: OrderService
+Hosts: db-server-1
+IPs: None
+Commands: None","Root Cause: Database service on db-server-1 was unavailable (connection refused).
+Resolution: Performed DB service restart (mysql) and confirmed recovery.
+Preventive Action: Enable DB monitoring/alerts and implement client retries."
+"Incident Type: db_connection_failure
+Services: PaymentService
+Hosts: db-server-2
+IPs: None
+Commands: None","Root Cause: DB service disruption on db-server-2 led to application errors.
+Resolution: Restarted postgresql and monitored until stable.
+Preventive Action: Add circuit breaker + retries in the application."
+"Incident Type: network_latency_timeout
+Services: Gateway, SearchService
+Hosts: None
+IPs: None
+Commands: None","Root Cause: Network latency spike (~180ms) caused request timeouts in SearchService.
+Resolution: Confirmed recovery once latency returned to normal levels.
+Preventive Action: Implement client-side timeouts + exponential backoff."
+"Incident Type: security_failed_logins
+Services: None
+Hosts: None
+IPs: 172.16.3.99
+Commands: None","Root Cause: Suspicious login activity from 172.16.3.99 triggered account lockouts for root.
+Resolution: Blocked 172.16.3.99 at the firewall and locked root temporarily.
+Preventive Action: Configure account lockout policies and MFA for privileged accounts."
+"Incident Type: cpu_timeout
+Services: BillingService
+Hosts: node-6
+IPs: None
+Commands: None","Root Cause: High CPU usage on node-6 caused BillingService timeouts.
+Resolution: Restarted BillingService deployment.
+Preventive Action: Configure HPA and set CPU thresholds."
+"Incident Type: db_connection_failure
+Services: OrderService
+Hosts: db-server-2
+IPs: None
+Commands: None","Root Cause: Database host db-server-2 stopped responding to connections.
+Resolution: Restarted the database service (mysql) and verified connections.
+Preventive Action: Set up DB replication/failover and monitor connection errors."
+"Incident Type: db_connection_failure
+Services: PaymentService
+Hosts: db-server-2
+IPs: None
+Commands: None","Root Cause: Temporary DB outage on db-server-2 caused connection failures.
+Resolution: Restarted postgresql and monitored until stable.
+Preventive Action: Configure connection pooling with retries and alert on DB errors."
+"Incident Type: security_failed_logins
+Services: None
+Hosts: None
+IPs: 192.168.1.25
+Commands: None","Root Cause: Repeated failed authentication attempts from 192.168.1.25 indicated a brute-force attempt.
+Resolution: Temporarily blocked 192.168.1.25, forced password reset for root, and monitored alerts.
+Preventive Action: Enable MFA and add rate-limiting for authentication."
+"Incident Type: security_failed_logins
+Services: None
+Hosts: None
+IPs: 10.10.14.8
+Commands: None","Root Cause: Repeated failed authentication attempts from 10.10.14.8 indicated a brute-force attempt.
+Resolution: Blocked 10.10.14.8 at the firewall and locked admin temporarily.
+Preventive Action: Restrict admin access by IP allowlist and enable MFA."
+"Incident Type: network_latency_timeout
+Services: Gateway
+Hosts: None
+IPs: None
+Commands: None","Root Cause: Upstream network instability led to timeouts observed in Gateway.
+Resolution: Confirmed recovery once latency returned to normal levels.
+Preventive Action: Add upstream dependency SLO alerts and tracing."
+"Incident Type: network_latency_timeout
+Services: APIService
+Hosts: None
+IPs: None
+Commands: None","Root Cause: Transient network degradation (latency ~250ms) impacted APIService availability.
+Resolution: Observed stabilization after investigating network metrics and dependencies.
+Preventive Action: Add upstream dependency SLO alerts and tracing."
+"Incident Type: db_connection_failure
+Services: AuthService
+Hosts: db-server-2
+IPs: None
+Commands: None","Root Cause: DB service disruption on db-server-2 led to application errors.
+Resolution: Restarted postgresql and monitored until stable.
+Preventive Action: Add circuit breaker + retries in the application."
+"Incident Type: security_failed_logins
+Services: None
+Hosts: None
+IPs: 203.0.113.14
+Commands: None","Root Cause: High-rate failed logins from 203.0.113.14 caused security alerts on SSH.
+Resolution: Blocked 203.0.113.14 at the firewall and locked ops_user temporarily.
+Preventive Action: Add bot protection/rate limits and alert on abnormal login patterns."
+"Incident Type: db_connection_failure
+Services: AuthService
+Hosts: db-server-1
+IPs: None
+Commands: None","Root Cause: Database host db-server-1 stopped responding to connections.
+Resolution: Restarted the database service (postgresql) and verified connections.
+Preventive Action: Add DB health checks and connection retry/backoff."
+"Incident Type: network_latency_timeout
+Services: Gateway
+Hosts: None
+IPs: None
+Commands: None","Root Cause: Transient network degradation (latency ~900ms) impacted Gateway availability.
+Resolution: Observed stabilization after investigating network metrics and dependencies.
+Preventive Action: Add latency SLO alerts and investigate network bottlenecks."
+"Incident Type: network_latency_timeout
+Services: SearchService
+Hosts: None
+IPs: None
+Commands: None","Root Cause: Increased network latency and/or packet loss caused timeouts for SearchService.
+Resolution: Validated network recovery and continued monitoring until stable.
+Preventive Action: Implement client-side timeouts + exponential backoff."
+"Incident Type: disk_full
+Services: None
+Hosts: vm-2
+IPs: None
+Commands: None","Root Cause: Disk exhaustion on vm-2 caused write failures for ETLWorker.
+Resolution: Removed large/old log files and verified disk recovery.
+Preventive Action: Configure log rotation and disk usage alerts."
+"Incident Type: disk_full
+Services: LoggingService
+Hosts: vm-9
+IPs: None
+Commands: None","Root Cause: Disk exhaustion on vm-9 caused write failures for LoggingService.
+Resolution: Cleared old logs and temporary files to free disk space.
+Preventive Action: Configure log rotation and disk usage alerts."
+"Incident Type: security_failed_logins
+Services: None
+Hosts: None
+IPs: 192.168.1.25
+Commands: None","Root Cause: Brute-force login attempts from 192.168.1.25 targeting ops_user via VPN.
+Resolution: Enabled rate limiting and blocked 192.168.1.25 to stop repeated failures.
+Preventive Action: Configure account lockout policies and MFA for privileged accounts."
+"Incident Type: db_connection_failure
+Services: AuthService
+Hosts: db-server-1
+IPs: None
+Commands: None","Root Cause: Temporary DB outage on db-server-1 caused connection failures.
+Resolution: Restarted the database service (mysql) and verified connections.
+Preventive Action: Add circuit breaker + retries in the application."
+"Incident Type: disk_full
+Services: None
+Hosts: vm-2
+IPs: None
+Commands: None","Root Cause: Disk exhaustion on vm-2 caused write failures for ImageProcessor.
+Resolution: Freed disk space by removing old data and confirmed stability.
+Preventive Action: Implement automated cleanup and disk threshold alerting."
+"Incident Type: network_latency_timeout
+Services: Gateway
+Hosts: None
+IPs: None
+Commands: None","Root Cause: Upstream network instability led to timeouts observed in Gateway.
+Resolution: Observed stabilization after investigating network metrics and dependencies.
+Preventive Action: Add latency SLO alerts and investigate network bottlenecks."
+"Incident Type: disk_full
+Services: LoggingService
+Hosts: node-4
+IPs: None
+Commands: None","Root Cause: Disk usage reached 100% on node-4, causing failures in LoggingService.
+Resolution: Removed large/old log files and verified disk recovery.
+Preventive Action: Apply log rotation policies and review storage capacity planning."
+"Incident Type: security_failed_logins
+Services: None
+Hosts: None
+IPs: 172.16.3.99
+Commands: None","Root Cause: Brute-force login attempts from 172.16.3.99 targeting root via RDP.
+Resolution: Enabled rate limiting and blocked 172.16.3.99 to stop repeated failures.
+Preventive Action: Restrict admin access by IP allowlist and enable MFA."
+"Incident Type: network_latency_timeout
+Services: OrderService
+Hosts: None
+IPs: None
+Commands: None","Root Cause: Increased network latency and/or packet loss caused timeouts for OrderService.
+Resolution: Validated network recovery and continued monitoring until stable.
+Preventive Action: Implement retry/backoff and alert on upstream latency spikes."
+"Incident Type: db_connection_failure
+Services: AuthService
+Hosts: db-server-1
+IPs: None
+Commands: None","Root Cause: Temporary DB outage on db-server-1 caused connection failures.
+Resolution: Restarted the database service (mysql) and verified connections.
+Preventive Action: Add DB health checks and connection retry/backoff."
+"Incident Type: disk_full
+Services: LoggingService
+Hosts: node-4
+IPs: None
+Commands: None","Root Cause: Disk usage reached 100% on node-4, causing failures in LoggingService.
+Resolution: Freed disk space by removing old data and confirmed stability.
+Preventive Action: Alert earlier (e.g., 80% disk) and review capacity."
+"Incident Type: security_failed_logins
+Services: None
+Hosts: None
+IPs: 192.168.1.25
+Commands: None","Root Cause: Repeated failed authentication attempts from 192.168.1.25 indicated a brute-force attempt.
+Resolution: Temporarily blocked 192.168.1.25, forced password reset for root, and monitored alerts.
+Preventive Action: Enable MFA and add rate-limiting for authentication."
+"Incident Type: db_connection_failure
+Services: AuthService
+Hosts: db-server-1
+IPs: None
+Commands: None","Root Cause: Database service on db-server-1 was unavailable (connection refused).
+Resolution: Restarted mysql service to restore connectivity.
+Preventive Action: Enable DB monitoring/alerts and implement client retries."
+"Incident Type: disk_full
+Services: LoggingService
+Hosts: node-4
+IPs: None
+Commands: None","Root Cause: Disk exhaustion on node-4 caused write failures for LoggingService.
+Resolution: Freed disk space by removing old data and confirmed stability.
+Preventive Action: Alert earlier (e.g., 80% disk) and review capacity."
+"Incident Type: disk_full
+Services: None
+Hosts: node-6
+IPs: None
+Commands: None","Root Cause: Disk exhaustion on node-6 caused write failures for ImageProcessor.
+Resolution: Cleared old logs and temporary files to free disk space.
+Preventive Action: Implement automated cleanup and disk threshold alerting."
+"Incident Type: cpu_timeout
+Services: UserService
+Hosts: node-4
+IPs: None
+Commands: None","Root Cause: High CPU usage on node-4 caused UserService timeouts.
+Resolution: Restarted UserService deployment.
+Preventive Action: Configure HPA and set CPU thresholds."
+"Incident Type: disk_full
+Services: OrderService
+Hosts: node-6
+IPs: None
+Commands: None","Root Cause: Disk exhaustion on node-6 caused write failures for OrderService.
+Resolution: Cleaned up logs and validated OrderService resumed normal writes.
+Preventive Action: Implement automated cleanup and disk threshold alerting."
+"Incident Type: db_connection_failure
+Services: OrderService
+Hosts: db-server-1
+IPs: None
+Commands: None","Root Cause: DB service disruption on db-server-1 led to application errors.
+Resolution: Restarted postgresql service to restore connectivity.
+Preventive Action: Enable DB monitoring/alerts and implement client retries."
+"Incident Type: cpu_timeout
+Services: OrderService
+Hosts: node-4
+IPs: None
+Commands: None","Root Cause: High CPU usage on node-4 caused OrderService timeouts.
+Resolution: Restarted OrderService deployment.
+Preventive Action: Configure HPA and set CPU thresholds."
+"Incident Type: cpu_timeout
+Services: AuthService
+Hosts: node-4
+IPs: None
+Commands: None","Root Cause: High CPU usage on node-4 caused AuthService timeouts.
+Resolution: Restarted AuthService deployment.
+Preventive Action: Investigate load spike and add scaling policy."
+"Incident Type: security_failed_logins
+Services: None
+Hosts: None
+IPs: 203.0.113.14
+Commands: None","Root Cause: High-rate failed logins from 203.0.113.14 caused security alerts on RDP.
+Resolution: Enabled rate limiting and blocked 203.0.113.14 to stop repeated failures.
+Preventive Action: Enable MFA and add rate-limiting for authentication."
+"Incident Type: db_connection_failure
+Services: PaymentService
+Hosts: db-server-2
+IPs: None
+Commands: None","Root Cause: Database host db-server-2 stopped responding to connections.
+Resolution: Performed DB service restart (postgresql) and confirmed recovery.
+Preventive Action: Add circuit breaker + retries in the application."
+"Incident Type: cpu_timeout
+Services: InventoryService
+Hosts: node-3
+IPs: None
+Commands: None","Root Cause: High CPU usage on node-3 caused InventoryService timeouts.
+Resolution: Restarted InventoryService deployment.
+Preventive Action: Configure HPA and set CPU thresholds."
+"Incident Type: db_connection_failure
+Services: AuthService
+Hosts: db-server-2
+IPs: None
+Commands: None","Root Cause: Temporary DB outage on db-server-2 caused connection failures.
+Resolution: Performed DB service restart (mysql) and confirmed recovery.
+Preventive Action: Add circuit breaker + retries in the application."
+"Incident Type: cpu_timeout
+Services: BillingService
+Hosts: node-2
+IPs: None
+Commands: None","Root Cause: High CPU usage on node-2 caused BillingService timeouts.
+Resolution: Restarted BillingService deployment.
+Preventive Action: Add rate limiting and investigate traffic spikes."
+"Incident Type: db_connection_failure
+Services: AuthService
+Hosts: db-server-2
+IPs: None
+Commands: None","Root Cause: Temporary DB outage on db-server-2 caused connection failures.
+Resolution: Restarted postgresql service to restore connectivity.
+Preventive Action: Configure connection pooling with retries and alert on DB errors."
+"Incident Type: cpu_timeout
+Services: BillingService
+Hosts: node-1
+IPs: None
+Commands: None","Root Cause: High CPU usage on node-1 caused BillingService timeouts.
+Resolution: Restarted BillingService deployment.
+Preventive Action: Enable auto-scaling and add CPU alerts."
+"Incident Type: db_connection_failure
+Services: AuthService
+Hosts: db-server-2
+IPs: None
+Commands: None","Root Cause: Database service on db-server-2 was unavailable (connection refused).
+Resolution: Restarted the database service (mysql) and verified connections.
+Preventive Action: Configure connection pooling with retries and alert on DB errors."
+"Incident Type: cpu_timeout
+Services: PaymentService
+Hosts: node-6
+IPs: None
+Commands: None","Root Cause: High CPU usage on node-6 caused PaymentService timeouts.
+Resolution: Restarted PaymentService deployment.
+Preventive Action: Add rate limiting and investigate traffic spikes."
+"Incident Type: network_latency_timeout
+Services: Gateway, OrderService
+Hosts: None
+IPs: None
+Commands: None","Root Cause: Network latency spike (~900ms) caused request timeouts in OrderService.
+Resolution: Observed stabilization after investigating network metrics and dependencies.
+Preventive Action: Set up packet loss monitoring and alert thresholds."
+"Incident Type: security_failed_logins
+Services: None
+Hosts: None
+IPs: 172.16.3.99
+Commands: None","Root Cause: Repeated failed authentication attempts from 172.16.3.99 indicated a brute-force attempt.
+Resolution: Applied firewall rule to drop traffic from 172.16.3.99 and monitored authentication logs.
+Preventive Action: Tune fail2ban thresholds and add SIEM alerting."
+"Incident Type: db_connection_failure
+Services: PaymentService
+Hosts: db-server-1
+IPs: None
+Commands: None","Root Cause: Database host db-server-1 stopped responding to connections.
+Resolution: Restarted mysql service to restore connectivity.
+Preventive Action: Add failover strategy and improve DB uptime monitoring."
+"Incident Type: network_latency_timeout
+Services: APIService
+Hosts: None
+IPs: None
+Commands: None","Root Cause: Upstream network instability led to timeouts observed in APIService.
+Resolution: Observed stabilization after investigating network metrics and dependencies.
+Preventive Action: Add end-to-end tracing and network performance alerts."
+"Incident Type: cpu_timeout
+Services: PaymentService
+Hosts: node-6
+IPs: None
+Commands: None","Root Cause: High CPU usage on node-6 caused PaymentService timeouts.
+Resolution: Restarted PaymentService deployment.
+Preventive Action: Add rate limiting and investigate traffic spikes."
+"Incident Type: security_failed_logins
+Services: None
+Hosts: None
+IPs: 192.168.1.25
+Commands: None","Root Cause: High-rate failed logins from 192.168.1.25 caused security alerts on WebLogin.
+Resolution: Blocked 192.168.1.25 at the firewall and locked admin temporarily.
+Preventive Action: Enable MFA and add rate-limiting for authentication."
+"Incident Type: cpu_timeout
+Services: UserService
+Hosts: node-2
+IPs: None
+Commands: None","Root Cause: High CPU usage on node-2 caused UserService timeouts.
+Resolution: Restarted UserService deployment.
+Preventive Action: Add rate limiting and investigate traffic spikes."
+"Incident Type: network_latency_timeout
+Services: SearchService
+Hosts: None
+IPs: None
+Commands: None","Root Cause: Transient network degradation (latency ~180ms) impacted SearchService availability.
+Resolution: Monitored the system until network conditions stabilized.
+Preventive Action: Add end-to-end tracing and network performance alerts."
+"Incident Type: cpu_timeout
+Services: OrderService
+Hosts: vm-9
+IPs: None
+Commands: None","Root Cause: High CPU usage on vm-9 caused OrderService timeouts.
+Resolution: Restarted OrderService deployment.
+Preventive Action: Tune resource limits/requests and add alerts."
+"Incident Type: security_failed_logins
+Services: None
+Hosts: None
+IPs: 192.168.1.25
+Commands: None","Root Cause: High-rate failed logins from 192.168.1.25 caused security alerts on SSH.
+Resolution: Blocked 192.168.1.25 at the firewall and locked svc_ci temporarily.
+Preventive Action: Enable MFA and add rate-limiting for authentication."
+"Incident Type: disk_full
+Services: None
+Hosts: node-4
+IPs: None
+Commands: None","Root Cause: Uncontrolled log growth filled disk on node-4, impacting ImageProcessor.
+Resolution: Cleaned up logs and validated ImageProcessor resumed normal writes.
+Preventive Action: Implement automated cleanup and disk threshold alerting."
+"Incident Type: db_connection_failure
+Services: OrderService
+Hosts: db-server-2
+IPs: None
+Commands: None","Root Cause: Database service on db-server-2 was unavailable (connection refused).
+Resolution: Restarted the database service (postgresql) and verified connections.
+Preventive Action: Add DB health checks and connection retry/backoff."
+"Incident Type: network_latency_timeout
+Services: Gateway, SearchService
+Hosts: None
+IPs: None
+Commands: None","Root Cause: Network latency spike (~450ms) caused request timeouts in SearchService.
+Resolution: Monitored the system until network conditions stabilized.
+Preventive Action: Add latency SLO alerts and investigate network bottlenecks."
+"Incident Type: security_failed_logins
+Services: None
+Hosts: None
+IPs: 172.16.3.99
+Commands: None","Root Cause: Repeated failed authentication attempts from 172.16.3.99 indicated a brute-force attempt.
+Resolution: Temporarily blocked 172.16.3.99, forced password reset for root, and monitored alerts.
+Preventive Action: Require MFA, reduce exposed auth surface, and monitor failed login spikes."
+"Incident Type: network_latency_timeout
+Services: APIService
+Hosts: None
+IPs: None
+Commands: None","Root Cause: Transient network degradation (latency ~900ms) impacted APIService availability.
+Resolution: Confirmed recovery once latency returned to normal levels.
+Preventive Action: Add latency SLO alerts and investigate network bottlenecks."
+"Incident Type: network_latency_timeout
+Services: OrderService
+Hosts: None
+IPs: None
+Commands: None","Root Cause: Increased network latency and/or packet loss caused timeouts for OrderService.
+Resolution: Monitored the system until network conditions stabilized.
+Preventive Action: Set up packet loss monitoring and alert thresholds."
+"Incident Type: disk_full
+Services: None
+Hosts: node-4
+IPs: None
+Commands: None","Root Cause: Disk exhaustion on node-4 caused write failures for ImageProcessor.
+Resolution: Cleaned up logs and validated ImageProcessor resumed normal writes.
+Preventive Action: Implement automated cleanup and disk threshold alerting."
+"Incident Type: cpu_timeout
+Services: OrderService
+Hosts: node-2
+IPs: None
+Commands: None","Root Cause: High CPU usage on node-2 caused OrderService timeouts.
+Resolution: Restarted OrderService deployment.
+Preventive Action: Add rate limiting and investigate traffic spikes."
+"Incident Type: disk_full
+Services: None
+Hosts: vm-9
+IPs: None
+Commands: None","Root Cause: Disk usage reached 100% on vm-9, causing failures in ImageProcessor.
+Resolution: Freed disk space by removing old data and confirmed stability.
+Preventive Action: Set up log retention limits and monitoring alerts."
+"Incident Type: network_latency_timeout
+Services: Gateway
+Hosts: None
+IPs: None
+Commands: None","Root Cause: Transient network degradation (latency ~180ms) impacted Gateway availability.
+Resolution: Validated network recovery and continued monitoring until stable.
+Preventive Action: Set up packet loss monitoring and alert thresholds."
+"Incident Type: security_failed_logins
+Services: None
+Hosts: None
+IPs: 198.51.100.22
+Commands: None","Root Cause: Brute-force login attempts from 198.51.100.22 targeting root via RDP.
+Resolution: Enabled rate limiting and blocked 198.51.100.22 to stop repeated failures.
+Preventive Action: Add bot protection/rate limits and alert on abnormal login patterns."
+"Incident Type: security_failed_logins
+Services: None
+Hosts: None
+IPs: 198.51.100.22
+Commands: None","Root Cause: Repeated failed authentication attempts from 198.51.100.22 indicated a brute-force attempt.
+Resolution: Blocked 198.51.100.22 at the firewall and locked svc_app temporarily.
+Preventive Action: Enable MFA and add rate-limiting for authentication."
+"Incident Type: db_connection_failure
+Services: PaymentService
+Hosts: db-server-2
+IPs: None
+Commands: None","Root Cause: DB service disruption on db-server-2 led to application errors.
+Resolution: Restarted mysql and monitored until stable.
+Preventive Action: Enable DB monitoring/alerts and implement client retries."
+"Incident Type: security_failed_logins
+Services: None
+Hosts: None
+IPs: 172.16.3.99
+Commands: None","Root Cause: Repeated failed authentication attempts from 172.16.3.99 indicated a brute-force attempt.
+Resolution: Temporarily blocked 172.16.3.99, forced password reset for root, and monitored alerts.
+Preventive Action: Add bot protection/rate limits and alert on abnormal login patterns."
+"Incident Type: cpu_timeout
+Services: Gateway
+Hosts: node-3
+IPs: None
+Commands: None","Root Cause: High CPU usage on node-3 caused Gateway timeouts.
+Resolution: Restarted Gateway deployment.
+Preventive Action: Investigate load spike and add scaling policy."
+"Incident Type: cpu_timeout
+Services: InventoryService
+Hosts: node-6
+IPs: None
+Commands: None","Root Cause: High CPU usage on node-6 caused InventoryService timeouts.
+Resolution: Restarted InventoryService deployment.
+Preventive Action: Enable auto-scaling and add CPU alerts."
+"Incident Type: security_failed_logins
+Services: None
+Hosts: None
+IPs: 203.0.113.14
+Commands: None","Root Cause: Repeated failed authentication attempts from 203.0.113.14 indicated a brute-force attempt.
+Resolution: Applied firewall rule to drop traffic from 203.0.113.14 and monitored authentication logs.
+Preventive Action: Tune fail2ban thresholds and add SIEM alerting."
+"Incident Type: db_connection_failure
+Services: PaymentService
+Hosts: db-server-1
+IPs: None
+Commands: None","Root Cause: Database host db-server-1 stopped responding to connections.
+Resolution: Restarted mysql service to restore connectivity.
+Preventive Action: Add failover strategy and improve DB uptime monitoring."
+"Incident Type: disk_full
+Services: None
+Hosts: vm-9
+IPs: None
+Commands: None","Root Cause: Temporary storage exhaustion on vm-9 led to write errors in ETLWorker.
+Resolution: Freed disk space by removing old data and confirmed stability.
+Preventive Action: Configure log rotation and disk usage alerts."
+"Incident Type: network_latency_timeout
+Services: OrderService
+Hosts: None
+IPs: None
+Commands: None","Root Cause: Upstream network instability led to timeouts observed in OrderService.
+Resolution: Validated network recovery and continued monitoring until stable.
+Preventive Action: Add upstream dependency SLO alerts and tracing."
+"Incident Type: disk_full
+Services: None
+Hosts: vm-9
+IPs: None
+Commands: None","Root Cause: Temporary storage exhaustion on vm-9 led to write errors in ImageProcessor.
+Resolution: Cleared old logs and temporary files to free disk space.
+Preventive Action: Add automated cleanup job and enforce retention limits."
+"Incident Type: network_latency_timeout
+Services: APIService
+Hosts: None
+IPs: None
+Commands: None","Root Cause: Transient network degradation (latency ~450ms) impacted APIService availability.
+Resolution: Monitored the system until network conditions stabilized.
+Preventive Action: Implement client-side timeouts + exponential backoff."
+"Incident Type: security_failed_logins
+Services: None
+Hosts: None
+IPs: 10.10.14.8
+Commands: None","Root Cause: Repeated failed authentication attempts from 10.10.14.8 indicated a brute-force attempt.
+Resolution: Enabled rate limiting and blocked 10.10.14.8 to stop repeated failures.
+Preventive Action: Enable MFA and add rate-limiting for authentication."
+"Incident Type: cpu_timeout
+Services: UserService
+Hosts: vm-2
+IPs: None
+Commands: None","Root Cause: High CPU usage on vm-2 caused UserService timeouts.
+Resolution: Restarted UserService deployment.
+Preventive Action: Enable auto-scaling and add CPU alerts."
+"Incident Type: cpu_timeout
+Services: UserService
+Hosts: node-6
+IPs: None
+Commands: None","Root Cause: High CPU usage on node-6 caused UserService timeouts.
+Resolution: Restarted UserService deployment.
+Preventive Action: Investigate load spike and add scaling policy."
+"Incident Type: disk_full
+Services: None
+Hosts: node-6
+IPs: None
+Commands: None","Root Cause: Uncontrolled log growth filled disk on node-6, impacting ImageProcessor.
+Resolution: Cleaned up logs and validated ImageProcessor resumed normal writes.
+Preventive Action: Set up log retention limits and monitoring alerts."
+"Incident Type: security_failed_logins
+Services: None
+Hosts: None
+IPs: 192.168.1.25
+Commands: None","Root Cause: High-rate failed logins from 192.168.1.25 caused security alerts on VPN.
+Resolution: Enabled rate limiting and blocked 192.168.1.25 to stop repeated failures.
+Preventive Action: Tune fail2ban thresholds and add SIEM alerting."
+"Incident Type: cpu_timeout
+Services: OrderService
+Hosts: vm-2
+IPs: None
+Commands: None","Root Cause: High CPU usage on vm-2 caused OrderService timeouts.
+Resolution: Restarted OrderService deployment.
+Preventive Action: Investigate load spike and add scaling policy."
+"Incident Type: disk_full
+Services: OrderService
+Hosts: node-4
+IPs: None
+Commands: None","Root Cause: Uncontrolled log growth filled disk on node-4, impacting OrderService.
+Resolution: Removed large/old log files and verified disk recovery.
+Preventive Action: Configure log rotation and disk usage alerts."
+"Incident Type: db_connection_failure
+Services: PaymentService
+Hosts: db-server-1
+IPs: None
+Commands: None","Root Cause: Database host db-server-1 stopped responding to connections.
+Resolution: Restarted mysql and monitored until stable.
+Preventive Action: Enable DB monitoring/alerts and implement client retries."
+"Incident Type: cpu_timeout
+Services: PaymentService
+Hosts: node-3
+IPs: None
+Commands: None","Root Cause: High CPU usage on node-3 caused PaymentService timeouts.
+Resolution: Restarted PaymentService deployment.
+Preventive Action: Add autoscaling plus dashboards for CPU and latency."
+"Incident Type: db_connection_failure
+Services: AuthService
+Hosts: db-server-1
+IPs: None
+Commands: None","Root Cause: Database host db-server-1 stopped responding to connections.
+Resolution: Restarted mysql and monitored until stable.
+Preventive Action: Add DB health checks and connection retry/backoff."
+"Incident Type: cpu_timeout
+Services: SearchService
+Hosts: node-1
+IPs: None
+Commands: None","Root Cause: High CPU usage on node-1 caused SearchService timeouts.
+Resolution: Restarted SearchService deployment.
+Preventive Action: Configure HPA and set CPU thresholds."
+"Incident Type: cpu_timeout
+Services: AuthService
+Hosts: vm-9
+IPs: None
+Commands: None","Root Cause: High CPU usage on vm-9 caused AuthService timeouts.
+Resolution: Restarted AuthService deployment.
+Preventive Action: Add rate limiting and investigate traffic spikes."
+"Incident Type: network_latency_timeout
+Services: OrderService
+Hosts: None
+IPs: None
+Commands: None","Root Cause: Network latency spike (~600ms) caused request timeouts in OrderService.
+Resolution: Observed stabilization after investigating network metrics and dependencies.
+Preventive Action: Implement retry/backoff and alert on upstream latency spikes."
+"Incident Type: security_failed_logins
+Services: None
+Hosts: None
+IPs: 203.0.113.14
+Commands: None","Root Cause: Brute-force login attempts from 203.0.113.14 targeting admin via WebLogin.
+Resolution: Temporarily blocked 203.0.113.14, forced password reset for admin, and monitored alerts.
+Preventive Action: Restrict admin access by IP allowlist and enable MFA."
+"Incident Type: db_connection_failure
+Services: PaymentService
+Hosts: db-server-2
+IPs: None
+Commands: None","Root Cause: Temporary DB outage on db-server-2 caused connection failures.
+Resolution: Restarted postgresql and monitored until stable.
+Preventive Action: Configure connection pooling with retries and alert on DB errors."
+"Incident Type: disk_full
+Services: None
+Hosts: node-4
+IPs: None
+Commands: None","Root Cause: Uncontrolled log growth filled disk on node-4, impacting ETLWorker.
+Resolution: Removed large/old log files and verified disk recovery.
+Preventive Action: Add automated cleanup job and enforce retention limits."
+"Incident Type: cpu_timeout
+Services: AuthService
+Hosts: node-2
+IPs: None
+Commands: None","Root Cause: High CPU usage on node-2 caused AuthService timeouts.
+Resolution: Restarted AuthService deployment.
+Preventive Action: Enable auto-scaling and add CPU alerts."
+"Incident Type: disk_full
+Services: LoggingService
+Hosts: vm-9
+IPs: None
+Commands: None","Root Cause: Disk usage reached 100% on vm-9, causing failures in LoggingService.
+Resolution: Cleaned up logs and validated LoggingService resumed normal writes.
+Preventive Action: Apply log rotation policies and review storage capacity planning."
+"Incident Type: cpu_timeout
+Services: PaymentService
+Hosts: node-4
+IPs: None
+Commands: None","Root Cause: High CPU usage on node-4 caused PaymentService timeouts.
+Resolution: Restarted PaymentService deployment.
+Preventive Action: Enable auto-scaling and add CPU alerts."
+"Incident Type: security_failed_logins
+Services: None
+Hosts: None
+IPs: 203.0.113.14
+Commands: None","Root Cause: Brute-force login attempts from 203.0.113.14 targeting root via SSH.
+Resolution: Temporarily blocked 203.0.113.14, forced password reset for root, and monitored alerts.
+Preventive Action: Enable MFA and add rate-limiting for authentication."
+"Incident Type: security_failed_logins
+Services: None
+Hosts: None
+IPs: 192.168.1.25
+Commands: None","Root Cause: Brute-force login attempts from 192.168.1.25 targeting ops_user via RDP.
+Resolution: Blocked 192.168.1.25 at the firewall and locked ops_user temporarily.
+Preventive Action: Enable MFA and add rate-limiting for authentication."
+"Incident Type: cpu_timeout
+Services: BillingService
+Hosts: vm-9
+IPs: None
+Commands: None","Root Cause: High CPU usage on vm-9 caused BillingService timeouts.
+Resolution: Restarted BillingService deployment.
+Preventive Action: Enable auto-scaling and add CPU alerts."
+"Incident Type: cpu_timeout
+Services: InventoryService
+Hosts: node-1
+IPs: None
+Commands: None","Root Cause: High CPU usage on node-1 caused InventoryService timeouts.
+Resolution: Restarted InventoryService deployment.
+Preventive Action: Add rate limiting and investigate traffic spikes."
+"Incident Type: db_connection_failure
+Services: AuthService
+Hosts: db-server-2
+IPs: None
+Commands: None","Root Cause: Temporary DB outage on db-server-2 caused connection failures.
+Resolution: Restarted postgresql and monitored until stable.
+Preventive Action: Add circuit breaker + retries in the application."
+"Incident Type: disk_full
+Services: LoggingService
+Hosts: vm-2
+IPs: None
+Commands: None","Root Cause: Uncontrolled log growth filled disk on vm-2, impacting LoggingService.
+Resolution: Removed large/old log files and verified disk recovery.
+Preventive Action: Implement automated cleanup and disk threshold alerting."
+"Incident Type: cpu_timeout
+Services: InventoryService
+Hosts: vm-9
+IPs: None
+Commands: None","Root Cause: High CPU usage on vm-9 caused InventoryService timeouts.
+Resolution: Restarted InventoryService deployment.
+Preventive Action: Configure HPA and set CPU thresholds."
+"Incident Type: network_latency_timeout
+Services: Gateway
+Hosts: None
+IPs: None
+Commands: None","Root Cause: Network latency spike (~600ms) caused request timeouts in Gateway.
+Resolution: Validated network recovery and continued monitoring until stable.
+Preventive Action: Implement retry/backoff and alert on upstream latency spikes."
+"Incident Type: cpu_timeout
+Services: Gateway
+Hosts: node-1
+IPs: None
+Commands: None","Root Cause: High CPU usage on node-1 caused Gateway timeouts.
+Resolution: Restarted Gateway deployment.
+Preventive Action: Investigate load spike and add scaling policy."
+"Incident Type: disk_full
+Services: LoggingService
+Hosts: vm-2
+IPs: None
+Commands: None","Root Cause: Disk exhaustion on vm-2 caused write failures for LoggingService.
+Resolution: Cleaned up logs and validated LoggingService resumed normal writes.
+Preventive Action: Set up log retention limits and monitoring alerts."
+"Incident Type: disk_full
+Services: LoggingService
+Hosts: vm-9
+IPs: None
+Commands: None","Root Cause: Disk usage reached 100% on vm-9, causing failures in LoggingService.
+Resolution: Freed disk space by removing old data and confirmed stability.
+Preventive Action: Implement automated cleanup and disk threshold alerting."
+"Incident Type: security_failed_logins
+Services: None
+Hosts: None
+IPs: 203.0.113.14
+Commands: None","Root Cause: Brute-force login attempts from 203.0.113.14 targeting root via VPN.
+Resolution: Enabled rate limiting and blocked 203.0.113.14 to stop repeated failures.
+Preventive Action: Add bot protection/rate limits and alert on abnormal login patterns."
+"Incident Type: security_failed_logins
+Services: None
+Hosts: None
+IPs: 192.168.1.25
+Commands: None","Root Cause: High-rate failed logins from 192.168.1.25 caused security alerts on WebLogin.
+Resolution: Applied firewall rule to drop traffic from 192.168.1.25 and monitored authentication logs.
+Preventive Action: Require MFA, reduce exposed auth surface, and monitor failed login spikes."
+"Incident Type: security_failed_logins
+Services: None
+Hosts: None
+IPs: 172.16.3.99
+Commands: None","Root Cause: Suspicious login activity from 172.16.3.99 triggered account lockouts for admin.
+Resolution: Applied firewall rule to drop traffic from 172.16.3.99 and monitored authentication logs.
+Preventive Action: Require MFA, reduce exposed auth surface, and monitor failed login spikes."
+"Incident Type: network_latency_timeout
+Services: OrderService
+Hosts: None
+IPs: None
+Commands: None","Root Cause: Increased network latency and/or packet loss caused timeouts for OrderService.
+Resolution: Observed stabilization after investigating network metrics and dependencies.
+Preventive Action: Add upstream dependency SLO alerts and tracing."
+"Incident Type: network_latency_timeout
+Services: Gateway
+Hosts: None
+IPs: None
+Commands: None","Root Cause: Upstream network instability led to timeouts observed in Gateway.
+Resolution: Monitored the system until network conditions stabilized.
+Preventive Action: Set up packet loss monitoring and alert thresholds."
+"Incident Type: network_latency_timeout
+Services: Gateway, SearchService
+Hosts: None
+IPs: None
+Commands: None","Root Cause: Transient network degradation (latency ~600ms) impacted SearchService availability.
+Resolution: Observed stabilization after investigating network metrics and dependencies.
+Preventive Action: Implement client-side timeouts + exponential backoff."
+"Incident Type: security_failed_logins
+Services: None
+Hosts: None
+IPs: 203.0.113.14
+Commands: None","Root Cause: Repeated failed authentication attempts from 203.0.113.14 indicated a brute-force attempt.
+Resolution: Blocked 203.0.113.14 at the firewall and locked svc_ci temporarily.
+Preventive Action: Add bot protection/rate limits and alert on abnormal login patterns."
+"Incident Type: network_latency_timeout
+Services: OrderService
+Hosts: None
+IPs: None
+Commands: None","Root Cause: Transient network degradation (latency ~600ms) impacted OrderService availability.
+Resolution: Observed stabilization after investigating network metrics and dependencies.
+Preventive Action: Add upstream dependency SLO alerts and tracing."
+"Incident Type: db_connection_failure
+Services: AuthService
+Hosts: db-server-2
+IPs: None
+Commands: None","Root Cause: Database host db-server-2 stopped responding to connections.
+Resolution: Restarted postgresql and monitored until stable.
+Preventive Action: Configure connection pooling with retries and alert on DB errors."
+"Incident Type: cpu_timeout
+Services: PaymentService
+Hosts: node-3
+IPs: None
+Commands: None","Root Cause: High CPU usage on node-3 caused PaymentService timeouts.
+Resolution: Restarted PaymentService deployment.
+Preventive Action: Configure HPA and set CPU thresholds."
+"Incident Type: network_latency_timeout
+Services: APIService
+Hosts: None
+IPs: None
+Commands: None","Root Cause: Upstream network instability led to timeouts observed in APIService.
+Resolution: Observed stabilization after investigating network metrics and dependencies.
+Preventive Action: Set up packet loss monitoring and alert thresholds."
+"Incident Type: cpu_timeout
+Services: Gateway
+Hosts: vm-9
+IPs: None
+Commands: None","Root Cause: High CPU usage on vm-9 caused Gateway timeouts.
+Resolution: Restarted Gateway deployment.
+Preventive Action: Investigate load spike and add scaling policy."
+"Incident Type: db_connection_failure
+Services: PaymentService
+Hosts: db-server-2
+IPs: None
+Commands: None","Root Cause: Temporary DB outage on db-server-2 caused connection failures.
+Resolution: Performed DB service restart (postgresql) and confirmed recovery.
+Preventive Action: Set up DB replication/failover and monitor connection errors."
+"Incident Type: network_latency_timeout
+Services: APIService
+Hosts: None
+IPs: None
+Commands: None","Root Cause: Increased network latency and/or packet loss caused timeouts for APIService.
+Resolution: Observed stabilization after investigating network metrics and dependencies.
+Preventive Action: Implement client-side timeouts + exponential backoff."
+"Incident Type: security_failed_logins
+Services: None
+Hosts: None
+IPs: 203.0.113.14
+Commands: None","Root Cause: Repeated failed authentication attempts from 203.0.113.14 indicated a brute-force attempt.
+Resolution: Enabled rate limiting and blocked 203.0.113.14 to stop repeated failures.
+Preventive Action: Restrict admin access by IP allowlist and enable MFA."
+"Incident Type: security_failed_logins
+Services: None
+Hosts: None
+IPs: 172.16.3.99
+Commands: None","Root Cause: High-rate failed logins from 172.16.3.99 caused security alerts on VPN.
+Resolution: Temporarily blocked 172.16.3.99, forced password reset for svc_app, and monitored alerts.
+Preventive Action: Enable MFA and add rate-limiting for authentication."
+"Incident Type: network_latency_timeout
+Services: Gateway
+Hosts: None
+IPs: None
+Commands: None","Root Cause: Network latency spike (~450ms) caused request timeouts in Gateway.
+Resolution: Confirmed recovery once latency returned to normal levels.
+Preventive Action: Add latency SLO alerts and investigate network bottlenecks."
+"Incident Type: db_connection_failure
+Services: OrderService
+Hosts: db-server-1
+IPs: None
+Commands: None","Root Cause: Database service on db-server-1 was unavailable (connection refused).
+Resolution: Performed DB service restart (postgresql) and confirmed recovery.
+Preventive Action: Enable DB monitoring/alerts and implement client retries."
+"Incident Type: security_failed_logins
+Services: None
+Hosts: None
+IPs: 203.0.113.14
+Commands: None","Root Cause: Suspicious login activity from 203.0.113.14 triggered account lockouts for ops_user.
+Resolution: Blocked 203.0.113.14 at the firewall and locked ops_user temporarily.
+Preventive Action: Tune fail2ban thresholds and add SIEM alerting."
+"Incident Type: db_connection_failure
+Services: PaymentService
+Hosts: db-server-1
+IPs: None
+Commands: None","Root Cause: Temporary DB outage on db-server-1 caused connection failures.
+Resolution: Restarted postgresql service to restore connectivity.
+Preventive Action: Enable DB monitoring/alerts and implement client retries."
+"Incident Type: disk_full
+Services: None
+Hosts: node-6
+IPs: None
+Commands: None","Root Cause: Disk exhaustion on node-6 caused write failures for ImageProcessor.
+Resolution: Cleaned up logs and validated ImageProcessor resumed normal writes.
+Preventive Action: Add automated cleanup job and enforce retention limits."
+"Incident Type: network_latency_timeout
+Services: APIService
+Hosts: None
+IPs: None
+Commands: None","Root Cause: Increased network latency and/or packet loss caused timeouts for APIService.
+Resolution: Validated network recovery and continued monitoring until stable.
+Preventive Action: Add upstream dependency SLO alerts and tracing."
+"Incident Type: network_latency_timeout
+Services: SearchService
+Hosts: None
+IPs: None
+Commands: None","Root Cause: Network latency spike (~250ms) caused request timeouts in SearchService.
+Resolution: Confirmed recovery once latency returned to normal levels.
+Preventive Action: Add latency SLO alerts and investigate network bottlenecks."
+"Incident Type: disk_full
+Services: None
+Hosts: vm-9
+IPs: None
+Commands: None","Root Cause: Disk usage reached 100% on vm-9, causing failures in ETLWorker.
+Resolution: Cleared old logs and temporary files to free disk space.
+Preventive Action: Configure log rotation and disk usage alerts."
+"Incident Type: network_latency_timeout
+Services: SearchService
+Hosts: None
+IPs: None
+Commands: None","Root Cause: Transient network degradation (latency ~900ms) impacted SearchService availability.
+Resolution: Monitored the system until network conditions stabilized.
+Preventive Action: Add upstream dependency SLO alerts and tracing."
+"Incident Type: disk_full
+Services: None
+Hosts: vm-9
+IPs: None
+Commands: None","Root Cause: Disk usage reached 100% on vm-9, causing failures in ETLWorker.
+Resolution: Cleared old logs and temporary files to free disk space.
+Preventive Action: Implement automated cleanup and disk threshold alerting."
+"Incident Type: disk_full
+Services: OrderService
+Hosts: vm-9
+IPs: None
+Commands: None","Root Cause: Temporary storage exhaustion on vm-9 led to write errors in OrderService.
+Resolution: Freed disk space by removing old data and confirmed stability.
+Preventive Action: Alert earlier (e.g., 80% disk) and review capacity."
+"Incident Type: db_connection_failure
+Services: AuthService
+Hosts: db-server-1
+IPs: None
+Commands: None","Root Cause: Database host db-server-1 stopped responding to connections.
+Resolution: Restarted postgresql and monitored until stable.
+Preventive Action: Add DB health checks and connection retry/backoff."
+"Incident Type: disk_full
+Services: OrderService
+Hosts: node-6
+IPs: None
+Commands: None","Root Cause: Uncontrolled log growth filled disk on node-6, impacting OrderService.
+Resolution: Removed large/old log files and verified disk recovery.
+Preventive Action: Alert earlier (e.g., 80% disk) and review capacity."
+"Incident Type: network_latency_timeout
+Services: Gateway
+Hosts: None
+IPs: None
+Commands: None","Root Cause: Network latency spike (~250ms) caused request timeouts in Gateway.
+Resolution: Validated network recovery and continued monitoring until stable.
+Preventive Action: Add end-to-end tracing and network performance alerts."
+"Incident Type: network_latency_timeout
+Services: APIService
+Hosts: None
+IPs: None
+Commands: None","Root Cause: Transient network degradation (latency ~250ms) impacted APIService availability.
+Resolution: Observed stabilization after investigating network metrics and dependencies.
+Preventive Action: Set up packet loss monitoring and alert thresholds."

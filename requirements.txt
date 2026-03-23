@@ -1,0 +1,13 @@
+torch>=2.0.0
+transformers>=4.30.0
+sentencepiece
+pandas
+datasets
+evaluate
+rouge_score
+absl-py
+accelerate
+# fastapi
+# uvicorn
+
+# Installation Command:pip install -r requirements.txt
