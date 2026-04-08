@@ -52,7 +52,7 @@ def process_split(name):
         f"{OUT_DIR}/{name}.csv", index=False
     )
 
-    print(f"{name} done:", len(df)) # len(train) = 210, len(val) = 45, len(test) = 45
+    print(f"{name} done:", len(df)) # len(train) = 210, len(val) = 45, len(test) = 45 rows
 
 
 

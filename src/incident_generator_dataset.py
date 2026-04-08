@@ -2,11 +2,12 @@ import random
 from datetime import datetime, timedelta
 import pandas as pd
 
-# --- Diversity pools ---
+
 SERVICES = ["PaymentService", "AuthService", "OrderService", "SearchService", "InventoryService", "Gateway", "BillingService", "UserService"]
 HOSTS = ["node-1", "node-2", "node-3", "node-4", "node-6", "vm-2", "vm-7", "vm-9"]
 DBS = ["db-server-1", "db-server-2", "db-server-3"]
 
+# --- Variability in CPU Timeout Incidents ---
 CPU_SYMPTOMS_A = [
     "{service} is timing out.",
     "Seeing timeouts on {service}.",
@@ -657,7 +658,7 @@ def generate_balanced_dataset(per_template: int = 40, seed: int = 42) -> pd.Data
 
 
 if __name__ == "__main__":
-    df = generate_balanced_dataset(per_template=60, seed=7)  # 40*5 = 200
+    df = generate_balanced_dataset(per_template=60, seed=7)  # 60*5 = 300
     output_path = "C:\\AIG_Sem2\\NLP\\Context-Aware-Incident-Report-Generation\\data\\raw\\incident_dataset.csv"
     df.to_csv(output_path, index=False, encoding="utf-8")
     print(f"Saved {len(df)} incidents to: {output_path}")

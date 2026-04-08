@@ -63,8 +63,9 @@ model = T5ForConditionalGeneration.from_pretrained(MODEL_NAME) # model's weights
 # =========================================================
 # STEP 6: Define tokenization settings
 # =========================================================
-MAX_INPUT_LEN = 64
-MAX_TARGET_LEN = 96
+MAX_INPUT_LEN = 64 # 95th percentile of i/p data had token length of 39. 64 is a safe buffer to capture all input text without truncation. Longer lengths increase training time and memory usage. So, we want to keep it as low as possible while still capturing most of the data.
+MAX_TARGET_LEN = 96 # 95th percentile of o/p data had token length of 64. 96 is a safe buffer to capture all target text without truncation. Longer lengths increase training time and memory usage. So, we want to keep it as low as possible while still capturing most of the data.
+
 
 # =========================================================
 # STEP 7: Preprocessing function
@@ -106,8 +107,9 @@ data_collator = DataCollatorForSeq2Seq(
 # =========================================================
 # STEP 9: Evaluation metric
 # =========================================================
-rouge = evaluate.load("rouge") # ROUGE score is used to grade the model's output. 
-                               # If 1.0 (100%), model's o/p is identical to Human's
+rouge = evaluate.load("rouge") # Automatically computes ROUGE-1, ROUGE-2, ROUGE-L, and ROUGE-Lsum scores.
+# ROUGE score is used to evaluate text generation tasks.
+# If 1.0 (100%), model's o/p is identical to Human-written text.
 
 def compute_metrics(eval_preds):
     predictions, labels = eval_preds
@@ -151,7 +153,7 @@ training_args = Seq2SeqTrainingArguments(
     num_train_epochs=5,
     weight_decay=0.01,          # subtracts 0.01 from weights. Helps prevent overfitting by discouraging large weights.
     predict_with_generate=True, # writes new txt while evaluating. Crucial for ROUGE calculation.
-    fp16=False,                  # set True only if your GPU supports it well also for larger datasets.
+    fp16=False,                  # set True uses 16-bit precision and false uses 32-bit. GPU supports it well also for larger datasets.
     save_total_limit=2,
     load_best_model_at_end=True, # Automatically load best model after training based on rouge-L score
     metric_for_best_model="rougeL", 
