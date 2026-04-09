@@ -137,7 +137,7 @@ if st.button("Run Preprocessing & NLP Pipeline"):
     st.download_button(
         label="Download Report as TXT",
         data=report_text,
-        file_name="NLP_Incident_Report.txt",
+        file_name=f"{selected_label}_report.txt",
         mime="text/plain"
     )
 
