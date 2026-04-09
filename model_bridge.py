@@ -1,4 +1,4 @@
-from transformers import T5ForConditionalGeneration, AutoTokenizer
+from transformers import T5ForConditionalGeneration, AutoTokenizer, T5Tokenizer
 import torch
 
 MODEL_DIR = "models/flan_t5_stage2" 
@@ -8,7 +8,11 @@ print("Loading production inference model...")
 tokenizer = AutoTokenizer.from_pretrained(MODEL_DIR)
 model = T5ForConditionalGeneration.from_pretrained(MODEL_DIR)
 
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+# For Shrunga, uncomment the below lines and comment out the above two lines
+# tokenizer = T5Tokenizer.from_pretrained(MODEL_DIR)
+# model = T5ForConditionalGeneration.from_pretrained(MODEL_DIR)
+
+device = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
 model.to(device)
 model.eval()
 
