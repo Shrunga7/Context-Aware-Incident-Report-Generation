@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-from model2_bridge import generate_report
+from model_bridge import generate_report
 
 st.set_page_config(layout="wide", page_title="SOC Auto-Completion UI")
 st.title("🛡️ Context-Aware Incident Report Auto-Completion")
