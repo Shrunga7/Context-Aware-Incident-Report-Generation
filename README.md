@@ -26,7 +26,9 @@ This project focuses on automating the creation of Security Operations Center (S
 2. Generated model_ready datasets - model_ready_splits.py
 3. Trained the FLAN-T5 model - stage2_train_t5.py
 4. Performed model inference - stage2_inference.py
-
+### Streamlit Dashboard
+1. UI Dashboard - model_app.py
+2. Inference script to generate reports - model_bridge.py
 
 --------------------------------------------------------------------------------------------------
 
