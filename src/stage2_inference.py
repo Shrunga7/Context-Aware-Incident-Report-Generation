@@ -1,4 +1,5 @@
-from transformers import T5ForConditionalGeneration, T5Tokenizer
+# from transformers import T5ForConditionalGeneration, T5Tokenizer
+from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 import torch
 import pandas as pd
 import evaluate
@@ -6,8 +7,10 @@ import evaluate
 MODEL_DIR = "models/flan_t5_stage2"
 TEST_PATH = "data/model_ready/test.csv"
 
-tokenizer = T5Tokenizer.from_pretrained(MODEL_DIR)
-model = T5ForConditionalGeneration.from_pretrained(MODEL_DIR)
+# tokenizer = T5Tokenizer.from_pretrained(MODEL_DIR)
+# model = T5ForConditionalGeneration.from_pretrained(MODEL_DIR)
+tokenizer = AutoTokenizer.from_pretrained(MODEL_DIR)
+model = AutoModelForSeq2SeqLM.from_pretrained(MODEL_DIR)
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model.to(device)
